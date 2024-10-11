@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # This should be here
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -122,20 +123,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
+# Static files (CSS, JavaScript, images)
+STATIC_URL = "static/"
 
-# Location for collected static files during deployment
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Media files (uploads like images)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# Static files directories (add your app-level static directories)
+# Define the location of static files in the production environment
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static"),
 ]
+# For production, collect static files
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Media files (uploads)
+MEDIA_URL = "/images/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
 
 
 # Default primary key field type
