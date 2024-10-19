@@ -5,11 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif; /* Change the font to a more modern one */
+        }
+
+        .welcome-screen {
+            background-image: url('{% static "images/h1.jpg" %}'); /* Use Django's static tag */
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* Change to column for button layout */
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* Center text for better alignment */
+            color: white;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px; /* Add margin for spacing */
+        }
+
+        .button-container {
+            margin-top: 20px; /* Space between the title and buttons */
+        }
+
+        .button {
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: white;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            padding: 15px 30px; /* Spacing inside buttons */
+            font-size: 18px; /* Button text size */
+            cursor: pointer; /* Pointer cursor on hover */
+            margin: 10px; /* Space between buttons */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.4); /* Change color on hover */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
+        }
+
+    </style>
 </head>
 <body>
     <div class="welcome-screen">
         <h1>Welcome to Book Your Book</h1>
+        {% comment %} <div class="button-container">
+            <button class="button" onclick="window.location.href='{% url 'book' %}'">Book a Book</button>
+            <button class="button" onclick="window.location.href='{% url 'rent' %}'">Rent a Book</button>
+        </div> {% endcomment %}
     </div>
 </body>
 </html>
