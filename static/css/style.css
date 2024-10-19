@@ -6,7 +6,7 @@ body, html {
 }
 
 .welcome-screen {
-    background-image: url('../images/h1.jpg');  /* Reference to the image */
+    background-image: url('/static/images/h1.jpg'); /* Relative URL for the image in static files */
     background-size: cover;
     background-position: center;
     height: 100%;
@@ -14,6 +14,7 @@ body, html {
     justify-content: center;
     align-items: center;
 }
+
 
 h1 {
     color: white;
