@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    {% load static %}
+    <style>
+        body {
+            background-image: url('{% static 'images/login.png' %}');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #007BFF;
+            text-align: center;
+        }
+        form {
+            width: 100%;
+            position: relative;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .password-container {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .password-container input[type="password"] {
+            padding-right: 40px;
+        }
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        button.btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button.btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Signup</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username">Username:</label>
+                    {{ form.username }}
+                    {% for error in form.username.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                    <small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                </div>
+                <div class="form-group">
+                    <label for="id_first_name">First Name:</label>
+                    {{ form.first_name }}
+                    {% for error in form.first_name.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_last_name">Last Name:</label>
+                    {{ form.last_name }}
+                    {% for error in form.last_name.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_email">Email:</label>
+                    {{ form.email }}
+                    {% for error in form.email.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_favorite_book_genre">Favorite Book Genre:</label>
+                    {{ form.favorite_book_genre }}
+                    {% for error in form.favorite_book_genre.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group password-container">
+                    <label for="id_password1">Password:</label>
+                    {{ form.password1 }}
+                    <span class="toggle-password">👁️</span>
+                    {% for error in form.password1.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                    <small>Your password can't be too similar to your other personal information.</small><br>
+                    <small>Your password must contain at least 8 characters.</small><br>
+                    <small>Your password can't be a commonly used password.</small><br>
+                    <small>Your password can't be entirely numeric.</small>
+                </div>
+                <div class="form-group password-container">
+                    <label for="id_password2">Confirm Password:</label>
+                    {{ form.password2 }}
+                    <span class="toggle-password">👁️</span>
+                    {% for error in form.password2.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_mobile_number">Mobile Number:</label>
+                    {{ form.mobile_number }}
+                    {% for error in form.mobile_number.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="id_profile_picture">Profile Picture:</label>
+                    {{ form.profile_picture }}
+                    {% for error in form.profile_picture.errors %}
+                        <p class="error">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn">Signup</button>
+            </form>
+            <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const togglePasswordIcons = document.querySelectorAll('.toggle-password');
+
+            togglePasswordIcons.forEach(icon => {
+                icon.addEventListener('click', function () {
+                    const input = this.previousElementSibling;
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        this.textContent = '🙈';
+                    } else {
+                        input.type = 'password';
+                        this.textContent = '👁️';
+                    }
+                });
+            });
+
+            const inputs = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], input[type="file"]');
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', function () {
+                    this.style.borderColor = '#007BFF';
+                });
+
+                input.addEventListener('blur', function () {
+                    this.style.borderColor = '#ccc';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

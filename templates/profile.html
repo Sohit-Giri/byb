@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div id="profile">
+    <h1>{{ username }}'s Profile</h1>
+    <div class="profile-info">
+        {% if profile_picture %}
+            <img src="{{ profile_picture }}" alt="{{ username }}'s profile picture" class="profile-picture">
+        {% else %}
+            <p>No profile picture uploaded.</p>
+        {% endif %}
+        <p><strong>Name:</strong> {{ first_name }} {{ last_name }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Favorite Book Genre:</strong> {{ favorite_book_genre }}</p>
+        <p><strong>Mobile Number:</strong> {{ mobile_number }}</p>
+        <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f7f2e8; /* Light coffee color background to match other pages */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    #profile {
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .profile-info {
+        text-align: center;
+    }
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

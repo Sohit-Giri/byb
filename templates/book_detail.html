@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<div class="book-detail">
+    <h1>{{ book.title }}</h1>
+    <div class="book-photos">
+        <img src="{{ book.photo1.url }}" alt="{{ book.title }} Photo 1">
+        <img src="{{ book.photo2.url }}" alt="{{ book.title }} Photo 2">
+    </div>
+    <div class="book-info">
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Genre:</strong> {{ book.genre }}</p>
+        <p><strong>Condition:</strong> {{ book.condition }}</p>
+        <p><strong>Used Duration:</strong> {{ book.used_duration }}</p>
+        <p><strong>Price:</strong> 
+            {% if book.for_sale and book.for_rent %}
+                NPR {{ book.sale_amount }} / NPR {{ book.rent_amount }}/month
+            {% elif book.for_sale %}
+                NPR {{ book.sale_amount }}
+            {% elif book.for_rent %}
+                NPR {{ book.rent_amount }}/month
+            {% endif %}
+        </p>
+    </div>
+    <div class="book-actions">
+        {% if book.for_sale %}
+        <a href="{% url 'payment' book.pk 'buy' %}" class="btn btn-buy">Buy Now for NPR {{ book.sale_amount }}</a>
+        {% endif %}
+        {% if book.for_rent %}
+        <a href="{% url 'payment' book.pk 'rent' %}" class="btn btn-rent">Rent Now for NPR {{ book.rent_amount }}/month</a>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee color background */
+    }
+    .book-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 50px auto;
+    }
+    .book-photos {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .book-photos img {
+        width: 200px;
+        height: 300px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .book-photos img:hover {
+        transform: scale(1.05);
+    }
+    .book-info {
+        text-align: left;
+        width: 100%;
+        max-width: 600px;
+    }
+    .book-info p {
+        margin: 10px 0;
+        font-size: 1.1em;
+        color: #333;
+    }
+    .book-actions {
+        margin-top: 20px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn:hover {
+        transform: scale(1.05);
+    }
+    .btn-buy {
+        background-color: green;
+    }
+    .btn-rent {
+        background-color: orange;
+    }
+    .btn-buy:hover {
+        background-color: darkgreen;
+    }
+    .btn-rent:hover {
+        background-color: darkorange;
+    }
+</style>
+
+{% endblock %}

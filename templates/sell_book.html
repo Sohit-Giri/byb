@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block title %}Sell a Book{% endblock %}
+
+{% block content %}
+<div id="sell-book-form">
+    <h1>Sell a Book</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Title:</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <ul class="errorlist">
+                    {% for error in form.title.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_author">Author:</label>
+            {{ form.author }}
+            {% if form.author.errors %}
+                <ul class="errorlist">
+                    {% for error in form.author.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_condition">Condition:</label>
+            {{ form.condition }}
+            {% if form.condition.errors %}
+                <ul class="errorlist">
+                    {% for error in form.condition.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_genre">Genre:</label>
+            {{ form.genre }}
+            {% if form.genre.errors %}
+                <ul class="errorlist">
+                    {% for error in form.genre.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_photo1">Photo1:</label>
+            {{ form.photo1 }}
+            {% if form.photo1.errors %}
+                <ul class="errorlist">
+                    {% for error in form.photo1.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_photo2">Photo2:</label>
+            {{ form.photo2 }}
+            {% if form.photo2.errors %}
+                <ul class="errorlist">
+                    {% for error in form.photo2.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_used_duration">Used Duration:</label>
+            {{ form.used_duration }}
+            {% if form.used_duration.errors %}
+                <ul class="errorlist">
+                    {% for error in form.used_duration.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_sale_amount">Sale Amount:</label>
+            {{ form.sale_amount }}
+            {% if form.sale_amount.errors %}
+                <ul class="errorlist">
+                    {% for error in form.sale_amount.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <button type="submit" class="btn-primary">Sell Book</button>
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% elif form.errors %}
+        <ul class="errorlist">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ field.label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+    body {
+        background-color: #f7f2e8; /* Light coffee color background */
+        font-family: 'Roboto', sans-serif;
+    }
+    #sell-book-form {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    #sell-book-form h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: #333;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    .btn-primary {
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+    .errorlist {
+        color: red;
+        list-style-type: none;
+        padding: 0;
+    }
+    .errorlist li {
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}
