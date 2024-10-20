@@ -279,63 +279,8 @@ def edit_profile(request):
 
 # Add this view for the about us page
 def about_us(request):
-    team_members = [
-        {
-            "name": "Supriya Tandukar",
-            "role": "Project Manager",
-            "photo": "images/Supriya.jpg",
-            "instagram": "https://instagram.com/sohit_geere",
-        },
-        {
-            "name": "Sohit Giri",
-            "role": "Web Application Developer",
-            "photo": "images/Sohit.jpg",
-            "instagram": "https://instagram.com/sohit_geree",
-        },
-        {
-            "name": "Manjil Shahi",
-            "role": "Backend Developer",
-            "photo": "images/Manjil.jpg",
-            "instagram": "https://www.instagram.com/shahi.manjil/",
-        },
-        {
-            "name": "Sudip KC",
-            "role": "Frontend Developer",
-            "photo": "images/Sudip.jpg",
-            "instagram": "https://www.instagram.com/sudipho_/",
-        },
-        {
-            "name": "Muskan Khadka",
-            "role": "Content Writer",
-            "photo": "images/Muskan.jpg",
-            "instagram": "https://www.instagram.com/_muskankhadka/",
-        },
-        {
-            "name": "Suyesh Bharati",
-            "role": "Content Writer",
-            "photo": "images/Suyesh.jpg",
-            "instagram": "https://www.instagram.com/suyeshbharati22/",
-        },
-        {
-            "name": "Mahima Parajuli",
-            "role": "Website Designer",
-            "photo": "images/Mahima.jpg",
-            "instagram": "https://www.instagram.com/_aliferoussss_/",
-        },
-        {
-            "name": "Apekshya Basnyat",
-            "role": "Database Expert",
-            "photo": "images/Apekshya.jpg",
-            "instagram": "https://www.instagram.com/_appyzzz/",
-        },
-        {
-            "name": "Kunti Satyal",
-            "role": "",
-            "photo": "images/Kunti.jpg",
-            "instagram": "https://www.instagram.com/__kunti_satyal__05/",
-        },
-    ]
-    return render(request, "about_us.html", {"team_members": team_members})
+    logger.debug("About Us page accessed.")
+    return render(request, "about.html")
 
 
 def contact(request):

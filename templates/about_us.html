@@ -6,20 +6,17 @@
 {% block content %}
 <div class="about-us">
     <h1>About Us</h1>
-    <p>Welcome to our Social Innovation Project Module! Our team is dedicated to creating impactful solutions that address social challenges through innovative approaches. We combine our diverse skills in project management, frontend and backend development, and business analysis to bring our ideas to life and make a difference in our community.</p>
+
     <div class="team-members">
-        {% for member in team_members %}
         <div class="member-card">
-            <img src="{% static member.photo %}" alt="{{ member.name }}">
-            <h2>{{ member.name }}</h2>
-            <p>{{ member.role }}</p>
-            <a href="{{ member.instagram }}" target="_blank" class="instagram-link">
-                <img src="{% static 'instagram_icon.png' %}" alt="Instagram">
-            </a>
+            <img src="{% static '/static/images/Sohit.jpg' %}" alt="Sohit Giri"> <!-- Replace with the actual path to your photo -->
+            <h2>Sohit Giri</h2>
+            <p>CEO</p> <!-- Add your actual role -->
+
         </div>
-        {% endfor %}
     </div>
 </div>
+
 <style>
     body {
         background-color: #f0e5d8; /* Light coffee color to match other pages */
