@@ -1,4 +1,6 @@
+import tempfile
 from django.shortcuts import get_object_or_404, render, redirect
+from django.core.files.base import ContentFile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -228,16 +230,34 @@ def book_detail(request, pk):
 @login_required
 def payment(request, pk, mode):
     book = get_object_or_404(Book, pk=pk)
+    
     if request.method == "POST":
         form = PaymentForm(request.POST, request.FILES)
+        
         if form.is_valid():
-            payment = form.save(commit=False)
-            payment.user = request.user
-            payment.book = book
-            payment.save()
-            return redirect("payment_success")
+            # Create a temporary file for the uploaded payment screenshot
+            uploaded_file = request.FILES['payment_screenshot']  # Assuming the field name is 'payment_screenshot'
+            
+            # Use NamedTemporaryFile to handle the file temporarily
+            with tempfile.NamedTemporaryFile(delete=True) as temp_file:
+                # Write the uploaded file's content to the temp file
+                temp_file.write(uploaded_file.read())
+                temp_file.flush()  # Ensure all data is written
+                
+                # If you want to save the temp file's content, you can create a ContentFile
+                temp_content_file = ContentFile(temp_file.read(), name=uploaded_file.name)
+                
+                # Now you can use temp_content_file as you need, e.g., save it to your model
+                payment = form.save(commit=False)
+                payment.user = request.user
+                payment.book = book
+                payment.payment_screenshot.save(uploaded_file.name, temp_content_file)  # Adjust based on your model
+                payment.save()
+                
+                return redirect("payment_success")
     else:
         form = PaymentForm()
+
     context = {
         "book": book,
         "form": form,
