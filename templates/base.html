@@ -131,12 +131,12 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                display: none;
+                display: none; /* Hide the menu by default */
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
             nav ul.show {
-                display: flex;
+                display: flex; /* Show the menu when toggled */
             }
 
             nav ul li {
@@ -151,17 +151,28 @@
             }
 
             .menu-toggle {
-                display: block;
+                display: block; /* Show toggle button only on mobile */
                 cursor: pointer;
                 background-color: #333;
                 color: white;
                 padding: 10px;
                 border: none;
                 font-size: 1.5em;
+                margin-left: auto; /* Align the toggle button to the right */
             }
 
             .menu-toggle:hover {
                 background-color: #444;
+            }
+
+            nav ul {
+                display: none; /* Initially hide the menu */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none; /* Hide toggle button on larger screens */
             }
         }
     </style>
@@ -173,6 +184,8 @@
             <h1>Book Your Book</h1>
         </div>
         
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button> <!-- Menu toggle button -->
+        
         <ul id="nav-menu">
             <li><a href="{% url 'home_buy_rent' %}">Home</a></li>
             <li><a href="{% url 'buy_books' %}">Buy Book</a></li>
@@ -181,6 +194,7 @@
             <li><a href="{% url 'about_us' %}">About Us</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
             <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="/forums">Forums</a></li> <!-- Added Forums link -->
             <li>
                 <form id="logout-form" action="{% url 'logout' %}" method="post">
                     {% csrf_token %}

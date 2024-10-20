@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-bu!#!ddravstczop+6a=e$^4^ju)7ggjg19u)$+6f(g95bckjl"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["instagram.com", ".vercel.app", "onrender.com", "localhost", "127.0.0.1"]
 
@@ -136,8 +136,8 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media files (uploads)
-MEDIA_URL = "/static/images/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
