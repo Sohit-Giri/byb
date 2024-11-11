@@ -65,6 +65,9 @@ def home_sell_donate_rent(request):
 def datecv(request):
     return render(request, "datecv.html")
 
+def calendar(request):
+    return render(request, "calendar.html")
+
 def home_buy_rent(request):
     user = request.user
     books_for_buying = Book.objects.filter(for_sale=True)[:6]

@@ -43,7 +43,7 @@ urlpatterns = [
         "forums/<int:pk>/comment/", views.forum_comment, name="forum_comment"
     ),  # Add this line for comments
     path("datecv/", views.datecv, name="datecv"),
-
+    path("calendar/", views.calendar, name="calendar"),
 ]
 
 if settings.DEBUG:
