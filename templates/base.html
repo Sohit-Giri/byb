@@ -7,6 +7,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+        /* Styling for the logo link */
+        .logo a {
+            text-decoration: none; /* Remove underline */
+            color: inherit;        /* Inherit the color from the parent element */
+        }
+        
+        /* Make the logo text bold */
+        .logo h1 {
+            font-weight: bold;     /* Set text to bold */
+            color: #fff;           /* Set to a color that fits your theme, like white */
+            font-size: 24px;       /* Adjust the font size as needed */
+        }
+
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #f4f4f9;
@@ -180,10 +193,11 @@
 <body>
     {% if user.is_authenticated %}
     <nav>
-        <div class="logo">
+    <div class="logo">
+        <a href="{% url 'home_buy_rent' %}">
             <h1>Book Your Book</h1>
-        </div>
-        
+        </a>
+    </div>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button> <!-- Menu toggle button -->
         
         <ul id="nav-menu">

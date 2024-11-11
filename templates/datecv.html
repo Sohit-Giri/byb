@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel='stylesheet' href="navbar.css">
+    <link rel='stylesheet' href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Converter</title>
+    <link rel="stylesheet" href="datecv.css">
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.nepal-flag-border {
+    height: 5px;
+    background: linear-gradient(90deg, #DC143C 50%, #003893 50%);
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.selection-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.selection-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.selection-btn.active {
+    background: linear-gradient(135deg, #DC143C, #003893);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.converter-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.converter-section.active {
+    display: block;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #003893;
+    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.1);
+}
+
+button.convert-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #DC143C, #003893);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.convert-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+footer {
+    background-color: #000; /* Black background */
+    padding: 20px;
+    color: white;
+    overflow: hidden;
+}
+
+.colc {
+    padding: 5px 0px;
+    text-align: left;
+    font-size: 14px;
+    color: #ccc; /* Light gray text */
+}
+
+#calendarLinks {
+    float: left;
+    width: 355px;
+}
+
+#clcol {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#soc {
+    float: right;
+}
+
+#cprght {
+    float: left;
+    color: #ccc; /* Light gray copyright text */
+}
+
+#features {
+    float: left;
+    margin-left: 10px;
+}
+
+#ffestivals {
+    float: left;
+    margin-left: 40px;
+}
+
+a.colc {
+    color: #ccc; /* Light gray for links */
+}
+
+.colc a {
+    color: #ccc; /* Light gray for links */
+}
+
+#ctctus {
+    float: right;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#acalendar-nepali-link {
+    clear: both;
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid #ccc; /* Light gray border */
+    text-align: center;
+}
+
+/* Hover effect for links */
+footer a:hover {
+    color: #fff; /* White color on hover */
+}
+        /* General Styles for Navbar */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif; /* Beautiful and modern font */
+            background-color: #f4f4f9; /* Light background color */
+        }
+
+        .topnav {
+            background-color: #1a1a1a; /* Darker background */
+            overflow: hidden;
+            padding: 10px 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease-in-out; /* Smooth transition for sticky effect */
+        }
+
+        .topnav a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .topnav a::before {
+            content: "" ;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #FF9800;
+            transition: width 0.3s ease-out;
+        }
+
+        .topnav a:hover {
+            color: #FF9800; /* Change text color */
+            background-color: #333; /* Dark background color */
+        }
+
+        .topnav a:hover::before {
+            width: 100%; /* Animated underline effect */
+        }
+
+        #logo_ {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease-in-out; /* Logo animation */
+        }
+
+        #logo_ img {
+            margin-right: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #logo_ span {
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #fff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #logo_:hover img {
+            transform: scale(1.1) rotate(10deg); /* Logo hover effect */
+        }
+
+        #logo_:hover span {
+            color: #FF9800; /* Logo text color change */
+        }
+
+        /* Hamburger icon - hidden by default */
+        .icon {
+            display: none;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+            .topnav a { 
+                display: block;
+                text-align: left;
+                padding: 12px 16px;
+            }
+
+            .icon {
+                display: block;
+            }
+
+            #logo_ {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #logo_ span {
+                font-size: 16px;
+            }
+
+            /* Animate the hamburger menu */
+            .icon:hover {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* For active menu toggle */
+        .topnav.responsive { position: relative; }
+        .topnav.responsive a.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .topnav.responsive a {
+            display: block;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+<script>
+        // Toggle between converters
+        function showConverter(type) {
+            document.querySelectorAll('.converter-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.selection-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(type).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Conversion logic
+        function convertDate(type) {
+            if (type === 'bs-to-ad') {
+                const year = parseInt(document.getElementById('bsYear').value);
+                const month = parseInt(document.getElementById('bsMonth').value);
+                const day = parseInt(document.getElementById('bsDay').value);
+                
+                // Basic BS to AD conversion logic
+                let adYear = year - 57;
+                let adMonth = month;
+                let adDay = day;
+
+                // Adjust for month differences
+                if (month <= 9) {
+                    // For months Baisakh to Ashwin
+                    adMonth += 4;
+                    if (day > 15) {
+                        adDay -= 15;
+                    } else {
+                        adMonth--;
+                        adDay += 15;
+                    }
+                } else {
+                    // For months Kartik to Chaitra
+                    adMonth -= 10;
+                    adYear++;
+                    if (day > 15) {
+                        adDay -= 15;
+                    } else {
+                        adMonth--;
+                        adDay += 15;
+                    }
+                }
+
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                const result = `${months[adMonth-1]} ${adDay}, ${adYear} AD`;
+                document.getElementById('bs-to-ad-result').innerText = result;
+                document.getElementById('bs-to-ad-result').style.display = 'block';
+            } else {
+                const year = parseInt(document.getElementById('adYear').value);
+                const month = parseInt(document.getElementById('adMonth').value);
+                const day = parseInt(document.getElementById('adDay').value);
+                
+                // Basic AD to BS conversion logic
+                let bsYear = year + 57;
+                let bsMonth = month;
+                let bsDay = day;
+
+                // Adjust for month differences
+                if (month <= 4) {
+                    // For months January to April
+                    bsMonth += 9;
+                    bsYear--;
+                    if (day > 15) {
+                        bsDay -= 15;
+                    } else {
+                        bsMonth--;
+                        bsDay += 15;
+                    }
+                } else {
+                    // For months May to December
+                    bsMonth -= 3;
+                    if (day > 15) {
+                        bsDay -= 15;
+                    } else {
+                        bsMonth--;
+                        bsDay += 15;
+                    }
+                }
+
+                const months = ['Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra', 'Ashwin',
+                              'Kartik', 'Mangsir', 'Poush', 'Magh', 'Falgun', 'Chaitra'];
+                
+                const result = `${months[bsMonth-1]} ${bsDay}, ${bsYear} BS`;
+                document.getElementById('ad-to-bs-result').innerText = result;
+                document.getElementById('ad-to-bs-result').style.display = 'block';
+            }
+        }
+</script>
+    <div class="container">
+        <header>
+            <div class="topnav" id="myTopnav">
+                <a href="/" style="padding:5px;">
+                    <div id="logo_">
+                        <img src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">
+                        <span>Ramro Patro</span>
+                    </div>
+                </a>
+          <a href="/calendar.html">Calendar</a>
+          <a href="/weather.html">Weather</a>
+          <a href="/datecv.html">Date Converter</a>
+          <a href="https://ramropatro.com/vegetable">Vegetable</a>
+          <a href="https://ramropatro.com/rashifal">Rashifal</a>
+          <a href="https://ramropatro.com/gold">Gold Silver</a>
+          <a href="https://ramropatro.com/forex">Forex</a>
+          <a href="https://ramropatro.com/unicode">Unicode</a>
+          <a href="https://ramropatro.com/widgets">Widgets</a>
+          <a href="https://ramropatro.com/cards">Cards</a>
+            </div>
+        </header>
+        <br>
+
+        <div class="nepal-flag-border"></div>
+        <h1>नेपाली मिति रूपान्तरक</h1>
+        
+        <div class="selection-buttons">
+            <button class="selection-btn active" onclick="showConverter('bs-to-ad')">BS to AD</button>
+            <button class="selection-btn" onclick="showConverter('ad-to-bs')">AD to BS</button>
+        </div>
+
+        <div class="converter-section active" id="bs-to-ad">
+            <div class="input-group">
+                <label>BS Year</label>
+                <select id="bsYear">
+                <option value= 2001  > 2001 </option>
+                <option value= 2002  > 2002 </option>
+                <option value= 2003  > 2003 </option>
+                <option value= 2004  > 2004 </option>
+                <option value= 2005  > 2005 </option>
+                <option value= 2006  > 2006 </option>
+                <option value= 2007  > 2007 </option>
+                <option value= 2008  > 2008 </option>
+                <option value= 2009  > 2009 </option>
+                <option value= 2010  > 2010 </option>
+                <option value= 2011  > 2011 </option>
+                <option value= 2012  > 2012 </option>
+                <option value= 2013  > 2013 </option>
+                <option value= 2014  > 2014 </option>
+                <option value= 2015  > 2015 </option>
+                <option value= 2016  > 2016 </option>
+                <option value= 2017  > 2017 </option>
+                <option value= 2018  > 2018 </option>
+                <option value= 2019  > 2019 </option>
+                <option value= 2020  > 2020 </option>
+                <option value= 2021  > 2021 </option>
+                <option value= 2022  > 2022 </option>
+                <option value= 2023  > 2023 </option>
+                <option value= 2024  > 2024 </option>
+                <option value= 2025  > 2025 </option>
+                <option value= 2026  > 2026 </option>
+                <option value= 2027  > 2027 </option>
+                <option value= 2028  > 2028 </option>
+                <option value= 2029  > 2029 </option>
+                <option value= 2030  > 2030 </option>
+                <option value= 2031  > 2031 </option>
+                <option value= 2032  > 2032 </option>
+                <option value= 2033  > 2033 </option>
+                <option value= 2034  > 2034 </option>
+                <option value= 2035  > 2035 </option>
+                <option value= 2036  > 2036 </option>
+                <option value= 2037  > 2037 </option>
+                <option value= 2038  > 2038 </option>
+                <option value= 2039  > 2039 </option>
+                <option value= 2040  > 2040 </option>
+                <option value= 2041  > 2041 </option>
+                <option value= 2042  > 2042 </option>
+                <option value= 2043  > 2043 </option>
+                <option value= 2044  > 2044 </option>
+                <option value= 2045  > 2045 </option>
+                <option value= 2046  > 2046 </option>
+                <option value= 2047  > 2047 </option>
+                <option value= 2048  > 2048 </option>
+                <option value= 2049  > 2049 </option>
+                <option value= 2050  > 2050 </option>
+                <option value= 2051  > 2051 </option>
+                <option value= 2052  > 2052 </option>
+                <option value= 2053  > 2053 </option>
+                <option value= 2054  > 2054 </option>
+                <option value= 2055  > 2055 </option>
+                <option value= 2056  > 2056 </option>
+                <option value= 2057  > 2057 </option>
+                <option value= 2058  > 2058 </option>
+                <option value= 2059  > 2059 </option>
+                <option value= 2060  > 2060 </option>
+                <option value= 2061  > 2061 </option>
+                <option value= 2062  > 2062 </option>
+                <option value= 2063  > 2063 </option>
+                <option value= 2064  > 2064 </option>
+                <option value= 2065  > 2065 </option>
+                <option value= 2066  > 2066 </option>
+                <option value= 2067  > 2067 </option>
+                <option value= 2068  > 2068 </option>
+                <option value= 2069  > 2069 </option>
+                <option value= 2070  > 2070 </option>
+                <option value= 2071  > 2071 </option>
+                <option value= 2072  > 2072 </option>
+                <option value= 2073  > 2073 </option>
+                <option value= 2074  > 2074 </option>
+                <option value= 2075  > 2075 </option>
+                <option value= 2076  > 2076 </option>
+                <option value= 2077  > 2077 </option>
+                <option value= 2078  > 2078 </option>
+                <option value= 2079  > 2079 </option>
+                <option value= 2080  > 2080 </option>
+                <option value= 2081  selected> 2081 </option>
+                <option value= 2082  > 2082 </option>
+                <option value= 2083  > 2083 </option>
+                <option value= 2084  > 2084 </option>
+                <option value= 2085  > 2085 </option>
+                <option value= 2086  > 2086 </option>
+                <option value= 2087  > 2087 </option>
+                <option value= 2088  > 2088 </option>
+                <option value= 2089  > 2089 </option>
+                <option value= 2090  > 2090 </option>
+                <option value= 2091  > 2091 </option>
+                <option value= 2092  > 2092 </option>
+                <option value= 2093  > 2093 </option>
+                <option value= 2094  > 2094 </option>
+                <option value= 2095  > 2095 </option>
+                <option value= 2096  > 2096 </option>
+                <option value= 2099  > 2099 </option>
+                <option value= 2097  > 2097 </option>
+                <option value= 2098  > 2098 </option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>BS Month</label>
+                <select id="bsMonth">
+                    <option value="1">Baisakh</option>
+                    <option value="2">Jestha</option>
+                    <option value="3">Ashadh</option>
+                    <option value="4">Shrawan</option>
+                    <option value="5">Bhadra</option>
+                    <option value="6">Ashwin</option>
+                    <option value="7" selected>Kartik</option>
+                    <option value="8">Mangsir</option>
+                    <option value="9">Poush</option>
+                    <option value="10">Magh</option>
+                    <option value="11">Falgun</option>
+                    <option value="12">Chaitra</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>BS Day</label>
+                <select id="bsDay">
+                    <option value="1" > 1 </option>
+                    <option value="2" > 2 </option>
+                    <option value="3" > 3 </option>
+                    <option value="4" > 4 </option>
+                    <option value="5" > 5 </option>
+                    <option value="6" > 6 </option>
+                    <option value="7" > 7 </option>
+                    <option value="8" > 8 </option>
+                    <option value="9" > 9 </option>
+                    <option value="10" > 10 </option>
+                    <option value="11" > 11 </option>
+                    <option value="12" > 12 </option>
+                    <option value="13" > 13 </option>
+                    <option value="14" > 14 </option>
+                    <option value="15" > 15 </option>
+                    <option value="16" > 16 </option>
+                    <option value="17" > 17 </option>
+                    <option value="18" > 18 </option>
+                    <option value="19" > 19 </option>
+                    <option value="20" > 20 </option>
+                    <option value="21" > 21 </option>
+                    <option value="22" > 22 </option>
+                    <option value="23" > 23 </option>
+                    <option value="24" > 24 </option>
+                    <option value="25" > 25 </option>
+                    <option value="26" > 26 </option>
+                    <option value="27" > 27 </option>
+                    <option value="28" > 28 </option>
+                    <option value="29" > 29 </option>
+                    <option value="30" > 30 </option>
+                    <option value="31" > 31 </option>
+                    <option value="32" > 32 </option>
+                </select>
+            </div>
+            <button class="convert-btn" onclick="convertDate('bs-to-ad')">Convert to AD</button>
+            <div class="result" id="bs-to-ad-result"></div>
+        </div>
+
+        <div class="converter-section" id="ad-to-bs">
+            <div class="input-group">
+                <label>AD Year</label>
+                <select id="adYear">
+                    <option value="1941" > 1941 </option>
+                    <option value="1942" > 1942 </option>
+                    <option value="1943" > 1943 </option>
+                    <option value="1944" > 1944 </option>
+                    <option value="1945" > 1945 </option>
+                    <option value="1946" > 1946 </option>
+                    <option value="1947" > 1947 </option>
+                    <option value="1948" > 1948 </option>
+                    <option value="1949" > 1949 </option>
+                    <option value="1950" > 1950 </option>
+                    <option value="1951" > 1951 </option>
+                    <option value="1952" > 1952 </option>
+                    <option value="1953" > 1953 </option>
+                    <option value="1954" > 1954 </option>
+                    <option value="1955" > 1955 </option>
+                    <option value="1956" > 1956 </option>
+                    <option value="1957" > 1957 </option>
+                    <option value="1958" > 1958 </option>
+                    <option value="1959" > 1959 </option>
+                    <option value="1960" > 1960 </option>
+                    <option value="1961" > 1961 </option>
+                    <option value="1962" > 1962 </option>
+                    <option value="1963" > 1963 </option>
+                    <option value="1964" > 1964 </option>
+                    <option value="1965" > 1965 </option>
+                    <option value="1966" > 1966 </option>
+                    <option value="1967" > 1967 </option>
+                    <option value="1968" > 1968 </option>
+                    <option value="1969" > 1969 </option>
+                    <option value="1970" > 1970 </option>
+                    <option value="1971" > 1971 </option>
+                    <option value="1972" > 1972 </option>
+                    <option value="1973" > 1973 </option>
+                    <option value="1974" > 1974 </option>
+                    <option value="1975" > 1975 </option>
+                    <option value="1976" > 1976 </option>
+                    <option value="1977" > 1977 </option>
+                    <option value="1978" > 1978 </option>
+                    <option value="1979" > 1979 </option>
+                    <option value="1980" > 1980 </option>
+                    <option value="1981" > 1981 </option>
+                    <option value="1982" > 1982 </option>
+                    <option value="1983" > 1983 </option>
+                    <option value="1984" > 1984 </option>
+                    <option value="1985" > 1985 </option>
+                    <option value="1986" > 1986 </option>
+                    <option value="1987" > 1987 </option>
+                    <option value="1988" > 1988 </option>
+                    <option value="1989" > 1989 </option>
+                    <option value="1990" > 1990 </option>
+                    <option value="1991" > 1991 </option>
+                    <option value="1992" > 1992 </option>
+                    <option value="1993" > 1993 </option>
+                    <option value="1994" > 1994 </option>
+                    <option value="1995" > 1995 </option>
+                    <option value="1996" > 1996 </option>
+                    <option value="1997" > 1997 </option>
+                    <option value="1998" > 1998 </option>
+                    <option value="1999" > 1999 </option>
+                    <option value="2000" > 2000 </option>
+                    <option value="2001" > 2001 </option>
+                    <option value="2002" > 2002 </option>
+                    <option value="2003" > 2003 </option>
+                    <option value="2004" > 2004 </option>
+                    <option value="2005" > 2005 </option>
+                    <option value="2006" > 2006 </option>
+                    <option value="2007" > 2007 </option>
+                    <option value="2008" > 2008 </option>
+                    <option value="2009" > 2009 </option>
+                    <option value="2010" > 2010 </option>
+                    <option value="2011" > 2011 </option>
+                    <option value="2012" > 2012 </option>
+                    <option value="2013" > 2013 </option>
+                    <option value="2014" > 2014 </option>
+                    <option value="2015" > 2015 </option>
+                    <option value="2016" > 2016 </option>
+                    <option value="2017" > 2017 </option>
+                    <option value="2018" > 2018 </option>
+                    <option value="2019" > 2019 </option>
+                    <option value="2020" > 2020 </option>
+                    <option value="2021" > 2021 </option>
+                    <option value="2022" > 2022 </option>
+                    <option value="2023" > 2023 </option>
+                    <option value="2024" selected> 2024 </option>
+                    <option value="2025" > 2025 </option>
+                    <option value="2026" > 2026 </option>
+                    <option value="2027" > 2027 </option>
+                    <option value="2028" > 2028 </option>
+                    <option value="2029" > 2029 </option>
+                    <option value="2030" > 2030 </option>
+                    <option value="2031" > 2031 </option>
+                    <option value="2032" > 2032 </option>
+                    <option value="2033" > 2033 </option>
+                    <option value="2034" > 2034 </option>
+                    <option value="2035" > 2035 </option>
+                    <option value="2036" > 2036 </option>
+                    <option value="2037" > 2037 </option>
+                    <option value="2038" > 2038 </option>
+                    <option value="2039" > 2039 </option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>AD Month</label>
+                <select id="adMonth">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11" selected>November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>AD Day</label>
+                <select id="adDay">
+                    <option value="1" > 1 </option>
+                    <option value="2" > 2 </option>
+                    <option value="3" > 3 </option>
+                    <option value="4" > 4 </option>
+                    <option value="5" > 5 </option>
+                    <option value="6" > 6 </option>
+                    <option value="7" > 7 </option>
+                    <option value="8" > 8 </option>
+                    <option value="9" > 9 </option>
+                    <option value="10" > 10 </option>
+                    <option value="11" > 11 </option>
+                    <option value="12" > 12 </option>
+                    <option value="13" > 13 </option>
+                    <option value="14" > 14 </option>
+                    <option value="15" > 15 </option>
+                    <option value="16" > 16 </option>
+                    <option value="17" > 17 </option>
+                    <option value="18" > 18 </option>
+                    <option value="19" > 19 </option>
+                    <option value="20" > 20 </option>
+                    <option value="21" > 21 </option>
+                    <option value="22" > 22 </option>
+                    <option value="23" > 23 </option>
+                    <option value="24" > 24 </option>
+                    <option value="25" > 25 </option>
+                    <option value="26" > 26 </option>
+                    <option value="27" > 27 </option>
+                    <option value="28" > 28 </option>
+                    <option value="29" > 29 </option>
+                    <option value="30" > 30 </option>
+                    <option value="31" > 31 </option>
+                </select>
+            </div>
+            <button class="convert-btn" onclick="convertDate('ad-to-bs')">Convert to BS</button>
+            <div class="result" id="ad-to-bs-result"></div>
+        </div>
+<br><br>
+
+<footer>
+    <div id="calendarLinks">
+
+        <h3 style="text-align: left">Nepali Calendar 2081</h3>
+        <div id="clcol">
+            <div id="firstHalf">
+                <div class="colc"><span><a href="/calendar/2081/baisakh">Baishakh</a></span> - <span><a href="/calendar/2081/baisakh">वैशाख</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/jestha">Jestha</a></span> - <span><a href="/calendar/2081/Jestha">जेठ</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/ashad">Ashad</a></span> - <span><a href="/calendar/2081/ashad">असार</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/shrawan">Shrawan</a></span> - <span><a href="/calendar/2081/shrawan">साउन</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/bhadra">Bhadra</a></span> - <span><a href="/calendar/2081/bhadra">भदौ</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/ashoj">Ashoj</a></span> - <span><a href="/calendar/2081/ashoj">असोज</a></span></div>
+            </div>
+            <div id="secHalf">
+                <div class="colc"><span><a href="/calendar/2081/kartik">Kartik</a></span> - <span><a href="/calendar/2081/kartik">कार्तिक</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/mangsir">Mangsir</a></span> - <span><a href="/calendar/2081/mangsir">मंसिर</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/poush">Poush</a></span> - <span><a href="/calendar/2081/poush">पौष</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/magh">Magh</a></span> - <span><a href="/calendar/2081/magh">माघ</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/falgun">Falgun</a></span> - <span><a href="/calendar/2081/falgun">फागुन</a></span></div>
+                <div class="colc"><span><a href="/calendar/2081/chaitra">Chaitra</a></span> - <span><a href="/calendar/2081/chaitra">चैत</a></span></div>
+            </div>
+        </div>
+    </div>
+    <div id="features">
+        <h3 style="text-align: left">Features</h3>
+        <div class="colc"><a href="/forex">Forex</a></div>
+         <div class="colc"><a href="/widgets">Widgets</a></div>
+        <div class="colc"><a href="/rashifal">Rashifal</a></div>
+        <div class="colc"><a href="/gold">Gold Rates</a></div>
+        <div class="colc"><a href="/unicode">Nepali Unicode</a></div>
+        <div class="colc"><a href="/vegetable">Vegetable Rates</a></div>
+    </div>
+
+    <div id="ffestivals">
+        <h3 style="text-align: left;">Festivals</h3>
+        <div class="colc"><a href="/calendar/2081/baisakh">New Year</a></div>
+        <div class="colc"><a href="/calendar/2081/ashoj">Teej</a></div>
+        <div class="colc"><a href="/calendar/2081/kartik">Dashain</a></div>
+        <div class="colc"><a href="/calendar/2081/kartik">Tihar</a></div>
+        <div class="colc"><a href="/calendar/2081/kartik">Chhath</a></div>
+        <div class="colc"><a href="/calendar/2081/poush">Lhosar</a></div>
+        <div class="colc"><a href="/calendar/2081/magh">Maghe Shankranti</a></div>
+        <div class="colc"><a href="/calendar/2081/falgun">Falgu Purnima</a></div>
+        <div class="colc"><a href="/calendar/2081/falgun">Shiva Ratri</a></div>
+    </div>
+
+    <div id="ctctus" >
+    	
+        <h3 style="text-align: left">Contact Us</h3>
+        <div class="colc"><a href="mailto:  ramropatro@gmail.com"><i class="fa fa-envelope mr-2"></i>&nbsp;ramropatro@gmail.com</a></div>
+        
+    </div>
+     <div id="acalendar-nepali-link">
+            <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">© Ramro Patro,  All Rights Reserved</span>
+
+            <span id="soc"><a href="https://www.facebook.com/ramropatro" target="_blank"><img src="https://ramropatro.com/images/ramro_patro_facebook_page.png" width="50px" height="50px"/></a></span>
+     </div>
+</footer> 
+</div>
+    <script src="datecv.js">
+</body>
+</html>
