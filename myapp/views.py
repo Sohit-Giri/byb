@@ -62,6 +62,8 @@ def login_view(request):
 def home_sell_donate_rent(request):
     return render(request, "home_sell_donate_rent.html")
 
+def datecv(request):
+    return render(request, "datecv.html")
 
 def home_buy_rent(request):
     user = request.user

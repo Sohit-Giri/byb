@@ -82,10 +82,10 @@ WSGI_APPLICATION = "byb1.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'byb'),
-        'USER': os.getenv('DB_USER', 'byb_user'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'LDU2jDiCsSVHidIambTewfHHMtPEtSNS'),
-        'HOST': os.getenv('DB_HOST', 'dpg-cs4eqd0gph6c73bvt6lg-a.oregon-postgres.render.com'),
+        'NAME': os.getenv('DB_NAME', 'byb1'),
+        'USER': os.getenv('DB_USER', 'byb1_user'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'GfZWsElRKOOFjcNV4kACJ4xHcgDt6f63'),
+        'HOST': os.getenv('DB_HOST', 'dpg-csp41n3qf0us73c79q1g-a.singapore-postgres.render.com'),
         'PORT': '5432',
     }
 }
