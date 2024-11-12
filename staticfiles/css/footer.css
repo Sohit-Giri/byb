@@ -1,0 +1,69 @@
+footer {
+    background-color: #000; /* Black background */
+    padding: 20px;
+    color: white;
+    overflow: hidden;
+}
+
+.colc {
+    padding: 5px 0px;
+    text-align: left;
+    font-size: 14px;
+    color: #ccc; /* Light gray text */
+}
+
+#calendarLinks {
+    float: left;
+    width: 355px;
+}
+
+#clcol {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#soc {
+    float: right;
+}
+
+#cprght {
+    float: left;
+    color: #ccc; /* Light gray copyright text */
+}
+
+#features {
+    float: left;
+    margin-left: 10px;
+}
+
+#ffestivals {
+    float: left;
+    margin-left: 40px;
+}
+
+a.colc {
+    color: #ccc; /* Light gray for links */
+}
+
+.colc a {
+    color: #ccc; /* Light gray for links */
+}
+
+#ctctus {
+    float: right;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#acalendar-nepali-link {
+    clear: both;
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid #ccc; /* Light gray border */
+    text-align: center;
+}
+
+/* Hover effect for links */
+footer a:hover {
+    color: #fff; /* White color on hover */
+}

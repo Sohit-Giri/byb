@@ -1,0 +1,127 @@
+        /* General Styles for Navbar */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif; /* Beautiful and modern font */
+            background-color: #f4f4f9; /* Light background color */
+        }
+
+        .topnav {
+            background-color: #1a1a1a; /* Darker background */
+            overflow: hidden;
+            padding: 10px 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease-in-out; /* Smooth transition for sticky effect */
+        }
+
+        .topnav a {
+            display: inline-block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .topnav a::before {
+            content: "" ;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #FF9800;
+            transition: width 0.3s ease-out;
+        }
+
+        .topnav a:hover {
+            color: #FF9800; /* Change text color */
+            background-color: #333; /* Dark background color */
+        }
+
+        .topnav a:hover::before {
+            width: 100%; /* Animated underline effect */
+        }
+
+        #logo_ {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease-in-out; /* Logo animation */
+        }
+
+        #logo_ img {
+            margin-right: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #logo_ span {
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #fff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        #logo_:hover img {
+            transform: scale(1.1) rotate(10deg); /* Logo hover effect */
+        }
+
+        #logo_:hover span {
+            color: #FF9800; /* Logo text color change */
+        }
+
+        /* Hamburger icon - hidden by default */
+        .topnav .icon {
+            display: none;
+            font-size: 30px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+
+            .topnav a {display: none;}
+            .topnav a.icon {
+              float: right;
+              display: block;
+            }
+
+            .icon {
+                display: block;
+            }
+
+            #logo_ {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #logo_ span {
+                font-size: 16px;
+            }
+
+            /* Animate the hamburger menu */
+            .icon:hover {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* For active menu toggle */
+        .topnav.responsive { position: relative; }
+        .topnav.responsive a.icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .topnav.responsive a {
+            display: block;
+            text-align: left;
+        }
