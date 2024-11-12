@@ -1,462 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel='stylesheet' href="navbar.css">
-    <link rel='stylesheet' href="footer.css">
+    <link rel='stylesheet' href="/static/css/navbar.css">
+    <link rel='stylesheet' href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Converter</title>
-    <link rel="stylesheet" href="datecv.css">
-    <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background: linear-gradient(135deg, #ff9966, #ff5e62);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.container {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-}
-
-.nepal-flag-border {
-    height: 5px;
-    background: linear-gradient(90deg, #DC143C 50%, #003893 50%);
-    border-radius: 20px 20px 0 0;
-    margin-bottom: 20px;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 28px;
-}
-
-.selection-buttons {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.selection-btn {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #f0f0f0;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.selection-btn.active {
-    background: linear-gradient(135deg, #DC143C, #003893);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.converter-section {
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-.converter-section.active {
-    display: block;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-input:focus, select:focus {
-    outline: none;
-    border-color: #003893;
-    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.1);
-}
-
-button.convert-btn {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #DC143C, #003893);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button.convert-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 18px;
-    color: #333;
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-footer {
-    background-color: #000; /* Black background */
-    padding: 20px;
-    color: white;
-    overflow: hidden;
-}
-
-.colc {
-    padding: 5px 0px;
-    text-align: left;
-    font-size: 14px;
-    color: #ccc; /* Light gray text */
-}
-
-#calendarLinks {
-    float: left;
-    width: 355px;
-}
-
-#clcol {
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-
-#soc {
-    float: right;
-}
-
-#cprght {
-    float: left;
-    color: #ccc; /* Light gray copyright text */
-}
-
-#features {
-    float: left;
-    margin-left: 10px;
-}
-
-#ffestivals {
-    float: left;
-    margin-left: 40px;
-}
-
-a.colc {
-    color: #ccc; /* Light gray for links */
-}
-
-.colc a {
-    color: #ccc; /* Light gray for links */
-}
-
-#ctctus {
-    float: right;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-#acalendar-nepali-link {
-    clear: both;
-    margin-top: 10px;
-    padding: 10px;
-    border-top: 1px solid #ccc; /* Light gray border */
-    text-align: center;
-}
-
-/* Hover effect for links */
-footer a:hover {
-    color: #fff; /* White color on hover */
-}
-        /* General Styles for Navbar */
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif; /* Beautiful and modern font */
-            background-color: #f4f4f9; /* Light background color */
-        }
-
-        .topnav {
-            background-color: #1a1a1a; /* Darker background */
-            overflow: hidden;
-            padding: 10px 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: all 0.3s ease-in-out; /* Smooth transition for sticky effect */
-        }
-
-        .topnav a {
-            display: inline-block;
-            color: #fff;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease-in-out;
-            position: relative;
-        }
-
-        .topnav a::before {
-            content: "" ;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background-color: #FF9800;
-            transition: width 0.3s ease-out;
-        }
-
-        .topnav a:hover {
-            color: #FF9800; /* Change text color */
-            background-color: #333; /* Dark background color */
-        }
-
-        .topnav a:hover::before {
-            width: 100%; /* Animated underline effect */
-        }
-
-        #logo_ {
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease-in-out; /* Logo animation */
-        }
-
-        #logo_ img {
-            margin-right: 10px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        #logo_ span {
-            font-size: 18px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: #fff;
-            transition: color 0.3s ease-in-out;
-        }
-
-        #logo_:hover img {
-            transform: scale(1.1) rotate(10deg); /* Logo hover effect */
-        }
-
-        #logo_:hover span {
-            color: #FF9800; /* Logo text color change */
-        }
-
-        /* Hamburger icon - hidden by default */
-        .icon {
-            display: none;
-            font-size: 30px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Mobile Responsiveness */
-        @media screen and (max-width: 600px) {
-            .topnav a { 
-                display: block;
-                text-align: left;
-                padding: 12px 16px;
-            }
-
-            .icon {
-                display: block;
-            }
-
-            #logo_ {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            #logo_ span {
-                font-size: 16px;
-            }
-
-            /* Animate the hamburger menu */
-            .icon:hover {
-                transform: rotate(90deg);
-            }
-        }
-
-        /* For active menu toggle */
-        .topnav.responsive { position: relative; }
-        .topnav.responsive a.icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-        .topnav.responsive a {
-            display: block;
-            text-align: left;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/static/css/datecv.css">
 </head>
 <body>
-<script>
-        // Toggle between converters
-        function showConverter(type) {
-            document.querySelectorAll('.converter-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.querySelectorAll('.selection-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            document.getElementById(type).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Conversion logic
-        function convertDate(type) {
-            if (type === 'bs-to-ad') {
-                const year = parseInt(document.getElementById('bsYear').value);
-                const month = parseInt(document.getElementById('bsMonth').value);
-                const day = parseInt(document.getElementById('bsDay').value);
-                
-                // Basic BS to AD conversion logic
-                let adYear = year - 57;
-                let adMonth = month;
-                let adDay = day;
-
-                // Adjust for month differences
-                if (month <= 9) {
-                    // For months Baisakh to Ashwin
-                    adMonth += 4;
-                    if (day > 15) {
-                        adDay -= 15;
-                    } else {
-                        adMonth--;
-                        adDay += 15;
-                    }
-                } else {
-                    // For months Kartik to Chaitra
-                    adMonth -= 10;
-                    adYear++;
-                    if (day > 15) {
-                        adDay -= 15;
-                    } else {
-                        adMonth--;
-                        adDay += 15;
-                    }
-                }
-
-                const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                              'July', 'August', 'September', 'October', 'November', 'December'];
-                
-                const result = `${months[adMonth-1]} ${adDay}, ${adYear} AD`;
-                document.getElementById('bs-to-ad-result').innerText = result;
-                document.getElementById('bs-to-ad-result').style.display = 'block';
-            } else {
-                const year = parseInt(document.getElementById('adYear').value);
-                const month = parseInt(document.getElementById('adMonth').value);
-                const day = parseInt(document.getElementById('adDay').value);
-                
-                // Basic AD to BS conversion logic
-                let bsYear = year + 57;
-                let bsMonth = month;
-                let bsDay = day;
-
-                // Adjust for month differences
-                if (month <= 4) {
-                    // For months January to April
-                    bsMonth += 9;
-                    bsYear--;
-                    if (day > 15) {
-                        bsDay -= 15;
-                    } else {
-                        bsMonth--;
-                        bsDay += 15;
-                    }
-                } else {
-                    // For months May to December
-                    bsMonth -= 3;
-                    if (day > 15) {
-                        bsDay -= 15;
-                    } else {
-                        bsMonth--;
-                        bsDay += 15;
-                    }
-                }
-
-                const months = ['Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra', 'Ashwin',
-                              'Kartik', 'Mangsir', 'Poush', 'Magh', 'Falgun', 'Chaitra'];
-                
-                const result = `${months[bsMonth-1]} ${bsDay}, ${bsYear} BS`;
-                document.getElementById('ad-to-bs-result').innerText = result;
-                document.getElementById('ad-to-bs-result').style.display = 'block';
-            }
-        }
-</script>
     <div class="container">
-        <header>
-            <div class="topnav" id="myTopnav">
-                <a href="/" style="padding:5px;">
-                    <div id="logo_">
-                        <img src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">
-                        <span>Ramro Patro</span>
-                    </div>
-                </a>
-          <a href="/calendar.html">Calendar</a>
-          <a href="/weather.html">Weather</a>
-          <a href="/datecv.html">Date Converter</a>
-          <a href="https://ramropatro.com/vegetable">Vegetable</a>
-          <a href="https://ramropatro.com/rashifal">Rashifal</a>
-          <a href="https://ramropatro.com/gold">Gold Silver</a>
-          <a href="https://ramropatro.com/forex">Forex</a>
-          <a href="https://ramropatro.com/unicode">Unicode</a>
-          <a href="https://ramropatro.com/widgets">Widgets</a>
-          <a href="https://ramropatro.com/cards">Cards</a>
-            </div>
-        </header>
+<div class="topnav" id="myTopnav">
+  <a href="/landing" style="padding:5px;">
+    <div id="logo_">
+      <img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">
+      <span>Sohit free-to-view Projects</span>
+    </div>
+  </a>
+    <div id="myLinks">
+  <a href="/calendar">Calendar</a>
+  <a href="/weather">Weather</a>
+  <a href="/datecv">Date Converter</a>
+  <a href="/cvgenerator">CV Generator</a>
+<a href="/" style="
+    color: white; 
+    text-decoration: none; 
+    padding: 8px 16px; 
+    border: 2px solid white; 
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;">
+    Login To BookYourBook
+</a>
+
+  </div>
+
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
         <br>
 
         <div class="nepal-flag-border"></div>
@@ -794,64 +386,125 @@ footer a:hover {
 <br><br>
 
 <footer>
-    <div id="calendarLinks">
-
-        <h3 style="text-align: left">Nepali Calendar 2081</h3>
-        <div id="clcol">
-            <div id="firstHalf">
-                <div class="colc"><span><a href="/calendar/2081/baisakh">Baishakh</a></span> - <span><a href="/calendar/2081/baisakh">वैशाख</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/jestha">Jestha</a></span> - <span><a href="/calendar/2081/Jestha">जेठ</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/ashad">Ashad</a></span> - <span><a href="/calendar/2081/ashad">असार</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/shrawan">Shrawan</a></span> - <span><a href="/calendar/2081/shrawan">साउन</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/bhadra">Bhadra</a></span> - <span><a href="/calendar/2081/bhadra">भदौ</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/ashoj">Ashoj</a></span> - <span><a href="/calendar/2081/ashoj">असोज</a></span></div>
-            </div>
-            <div id="secHalf">
-                <div class="colc"><span><a href="/calendar/2081/kartik">Kartik</a></span> - <span><a href="/calendar/2081/kartik">कार्तिक</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/mangsir">Mangsir</a></span> - <span><a href="/calendar/2081/mangsir">मंसिर</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/poush">Poush</a></span> - <span><a href="/calendar/2081/poush">पौष</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/magh">Magh</a></span> - <span><a href="/calendar/2081/magh">माघ</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/falgun">Falgun</a></span> - <span><a href="/calendar/2081/falgun">फागुन</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/chaitra">Chaitra</a></span> - <span><a href="/calendar/2081/chaitra">चैत</a></span></div>
-            </div>
-        </div>
-    </div>
     <div id="features">
         <h3 style="text-align: left">Features</h3>
-        <div class="colc"><a href="/forex">Forex</a></div>
-         <div class="colc"><a href="/widgets">Widgets</a></div>
-        <div class="colc"><a href="/rashifal">Rashifal</a></div>
-        <div class="colc"><a href="/gold">Gold Rates</a></div>
-        <div class="colc"><a href="/unicode">Nepali Unicode</a></div>
-        <div class="colc"><a href="/vegetable">Vegetable Rates</a></div>
-    </div>
-
-    <div id="ffestivals">
-        <h3 style="text-align: left;">Festivals</h3>
-        <div class="colc"><a href="/calendar/2081/baisakh">New Year</a></div>
-        <div class="colc"><a href="/calendar/2081/ashoj">Teej</a></div>
-        <div class="colc"><a href="/calendar/2081/kartik">Dashain</a></div>
-        <div class="colc"><a href="/calendar/2081/kartik">Tihar</a></div>
-        <div class="colc"><a href="/calendar/2081/kartik">Chhath</a></div>
-        <div class="colc"><a href="/calendar/2081/poush">Lhosar</a></div>
-        <div class="colc"><a href="/calendar/2081/magh">Maghe Shankranti</a></div>
-        <div class="colc"><a href="/calendar/2081/falgun">Falgu Purnima</a></div>
-        <div class="colc"><a href="/calendar/2081/falgun">Shiva Ratri</a></div>
+        <div class="colc"><a href="/calendar">Calendar</a></div>
+         <div class="colc"><a href="/weather">Weather</a></div>
+        <div class="colc"><a href="/datecv">Date Converter</a></div>
+        <div class="colc"><a href="/cvgenerator">CV Generator</a></div>
     </div>
 
     <div id="ctctus" >
     	
         <h3 style="text-align: left">Contact Us</h3>
-        <div class="colc"><a href="mailto:  ramropatro@gmail.com"><i class="fa fa-envelope mr-2"></i>&nbsp;ramropatro@gmail.com</a></div>
+<div class="colc">
+    <a href="mailto:girisohit000@gmail.com">
+        <i class="fa fa-envelope mr-2"></i>&nbsp;girisohit000@gmail.com
+    </a>
+</div>
         
     </div>
      <div id="acalendar-nepali-link">
-            <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">© Ramro Patro,  All Rights Reserved</span>
+            <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">© Sohit Giri,  All Rights Reserved</span>
 
-            <span id="soc"><a href="https://www.facebook.com/ramropatro" target="_blank"><img src="https://ramropatro.com/images/ramro_patro_facebook_page.png" width="50px" height="50px"/></a></span>
+            <span id="soc"><a href="https://www.facebook.com/negativezero.np" target="_blank"><img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" width="50px" height="50px"/></a></span>
      </div>
 </footer> 
 </div>
-    <script src="datecv.js">
+    <script>
+        // Toggle between converters
+        function showConverter(type) {
+            document.querySelectorAll('.converter-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.selection-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(type).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Conversion logic
+        function convertDate(type) {
+            if (type === 'bs-to-ad') {
+                const year = parseInt(document.getElementById('bsYear').value);
+                const month = parseInt(document.getElementById('bsMonth').value);
+                const day = parseInt(document.getElementById('bsDay').value);
+                
+                // Basic BS to AD conversion logic
+                let adYear = year - 57;
+                let adMonth = month;
+                let adDay = day;
+
+                // Adjust for month differences
+                if (month <= 9) {
+                    // For months Baisakh to Ashwin
+                    adMonth += 4;
+                    if (day > 15) {
+                        adDay -= 15;
+                    } else {
+                        adMonth--;
+                        adDay += 15;
+                    }
+                } else {
+                    // For months Kartik to Chaitra
+                    adMonth -= 10;
+                    adYear++;
+                    if (day > 15) {
+                        adDay -= 15;
+                    } else {
+                        adMonth--;
+                        adDay += 15;
+                    }
+                }
+
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+                
+                const result = `${months[adMonth-1]} ${adDay}, ${adYear} AD`;
+                document.getElementById('bs-to-ad-result').innerText = result;
+                document.getElementById('bs-to-ad-result').style.display = 'block';
+            } else {
+                const year = parseInt(document.getElementById('adYear').value);
+                const month = parseInt(document.getElementById('adMonth').value);
+                const day = parseInt(document.getElementById('adDay').value);
+                
+                // Basic AD to BS conversion logic
+                let bsYear = year + 57;
+                let bsMonth = month;
+                let bsDay = day;
+
+                // Adjust for month differences
+                if (month <= 4) {
+                    // For months January to April
+                    bsMonth += 9;
+                    bsYear--;
+                    if (day > 15) {
+                        bsDay -= 15;
+                    } else {
+                        bsMonth--;
+                        bsDay += 15;
+                    }
+                } else {
+                    // For months May to December
+                    bsMonth -= 3;
+                    if (day > 15) {
+                        bsDay -= 15;
+                    } else {
+                        bsMonth--;
+                        bsDay += 15;
+                    }
+                }
+
+                const months = ['Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra', 'Ashwin',
+                              'Kartik', 'Mangsir', 'Poush', 'Magh', 'Falgun', 'Chaitra'];
+                
+                const result = `${months[bsMonth-1]} ${bsDay}, ${bsYear} BS`;
+                document.getElementById('ad-to-bs-result').innerText = result;
+                document.getElementById('ad-to-bs-result').style.display = 'block';
+            }
+        }
+    </script>
 </body>
 </html>

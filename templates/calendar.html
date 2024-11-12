@@ -1,970 +1,55 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nepali Calendar - Kartik 2081</title>
+    <link rel='stylesheet' href="/static/css/calendar.css">
+    <link rel='stylesheet' href="/static/css/navbar.css">
+    <link rel='stylesheet' href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-body {
-    background-color: #f5f5f5;
-}
-
-.calendar-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 8px;
-}
-
-.calendar-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
-.calendar-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.calendar-controls {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn {
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.btn:hover {
-    background: #f5f5f5;
-}
-
-.btn, .nav-btn, .btn-bs {
-    padding: 8px 12px;
-    font-size: 0.9em;
-    font-weight: bold;
-    border: 1px solid #ccc;
-    background-color: #f5f5f5;
-    color: #333;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.btn.active, .btn-bs.active {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.nav-btn {
-    font-size: 1.2em;
-    padding: 8px;
-    background-color: #e0e0e0;
-    color: #333;
-}
-
-.nav-btn:hover, .btn:hover, .btn-bs:hover {
-    background-color: #d0d0d0;
-}
-
-input[type="text"].btn {
-    padding: 8px;
-    font-size: 0.9em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 150px;
-}
-
-input[type="text"].btn::placeholder {
-    color: #888;
-}
-
-.btn:hover, .btn-bs:hover, .nav-btn:hover {
-    background-color: #e7e7e7;
-}
-
-.btn:active, .btn-bs:active, .nav-btn:active {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.calendar-grid {
-    padding: 20px;
-}
-
-.weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-
-.weekday {
-    padding: 5px;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.weekday.sunday, .date.sunday {
-    color: #d32f2f;
-}
-
-.weekday.saturday, .date.saturday {
-    color: #d32f2f;
-}
-
-.days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-    background: #e0e0e0;
-}
-
-.day {
-    background: white;
-    min-height: 120px;
-    padding: 8px;
-    position: relative;
-    cursor: pointer;
-    transition: box-shadow 0.3s;
-}
-
-.day:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.details {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 4px;
-    font-size: 12px;
-    color: #333;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 4px;
-    z-index: 10;
-}
-
-.day:hover .details {
-    display: flex;
-}
-
-.add-note-btn {
-    padding: 4px 8px;
-    font-size: 12px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.add-note-btn:hover {
-    background-color: #0056b3;
-}
-
-.date {
-    font-size: 20px;
-    font-weight: 500;
-    position: relative;
-    margin-bottom: 16px;
-}
-
-.lunar-day {
-    position: absolute;
-    top: 2px;
-    right: 4px;
-    font-size: 12px;
-    color: #666;
-    display: flex;
-    gap: 2px;
-}
-
-.lunar-number {
-    background: #f0f0f0;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-}
-
-.tithi {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 4px;
-}
-
-.event {
-    font-size: 12px;
-    padding: 2px 4px;
-    margin: 2px 0;
-    border-radius: 2px;
-}
-
-.event.holiday {
-    background: #ffebee;
-    color: #d32f2f;
-}
-
-.event.religious {
-    background: #fff3e0;
-    color: #f57c00;
-}
-
-.event.international {
-    background: #e8f5e9;
-    color: #388e3c;
-}
-
-.orange-bg {
-    background: #ff5722;
-    color: white;
-}
-
-.dimmed {
-    opacity: 0.5; /* Adjust opacity as desired */
-}
-
-@media print {
-    .calendar-controls {
-        display: none;
-    }
-}
-
-.upcoming-events-container {
-    max-height: 300px; /* Adjust the height as needed */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-}
-
-.np-eve-holiday {
-    margin-bottom: 15px;
-    position: relative;
-    padding-bottom: 15px; /* Space for the separator */
-}
-
-.np-eve-holiday:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background-color: #ccc; /* Separator color */
-}
-
-.np-eve-holiday:last-child:after {
-    display: none; /* Remove separator for the last event */
-}
-
-.np-holiday-count {
-    font-weight: bold;
-}
-
-.np-holi-title {
-    font-size: 1.1rem;
-    color: #333;
-}
-
-small {
-    font-size: 0.9rem;
-    color: #777;
-}
-
-.np-eve-holiday:hover {
-    background-color: #f1f1f1; /* Hover effect */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.np-holi-title:hover {
-    color: #007bff; /* Change title color on hover */
-}
-
-        /* General Styles for Navbar */
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif; /* Beautiful and modern font */
-            background-color: #f4f4f9; /* Light background color */
-        }
-
-        .topnav {
-            background-color: #1a1a1a; /* Darker background */
-            overflow: hidden;
-            padding: 10px 20px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: all 0.3s ease-in-out; /* Smooth transition for sticky effect */
-        }
-
-        .topnav a {
-            display: inline-block;
-            color: #fff;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease-in-out;
-            position: relative;
-        }
-
-        .topnav a::before {
-            content: "" ;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background-color: #FF9800;
-            transition: width 0.3s ease-out;
-        }
-
-        .topnav a:hover {
-            color: #FF9800; /* Change text color */
-            background-color: #333; /* Dark background color */
-        }
-
-        .topnav a:hover::before {
-            width: 100%; /* Animated underline effect */
-        }
-
-        #logo_ {
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease-in-out; /* Logo animation */
-        }
-
-        #logo_ img {
-            margin-right: 10px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        #logo_ span {
-            font-size: 18px;
-            font-weight: 600;
-            text-transform: uppercase;
-            color: #fff;
-            transition: color 0.3s ease-in-out;
-        }
-
-        #logo_:hover img {
-            transform: scale(1.1) rotate(10deg); /* Logo hover effect */
-        }
-
-        #logo_:hover span {
-            color: #FF9800; /* Logo text color change */
-        }
-
-        /* Hamburger icon - hidden by default */
-        .icon {
-            display: none;
-            font-size: 30px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Mobile Responsiveness */
-        @media screen and (max-width: 600px) {
-            .topnav a { 
-                display: block;
-                text-align: left;
-                padding: 12px 16px;
-            }
-
-            .icon {
-                display: block;
-            }
-
-            #logo_ {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            #logo_ span {
-                font-size: 16px;
-            }
-
-            /* Animate the hamburger menu */
-            .icon:hover {
-                transform: rotate(90deg);
-            }
-        }
-
-        /* For active menu toggle */
-        .topnav.responsive { position: relative; }
-        .topnav.responsive a.icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-        .topnav.responsive a {
-            display: block;
-            text-align: left;
-        }
-
-        footer {
-    background-color: #000; /* Black background */
-    padding: 20px;
-    color: white;
-    overflow: hidden;
-}
-
-.colc {
-    padding: 5px 0px;
-    text-align: left;
-    font-size: 14px;
-    color: #ccc; /* Light gray text */
-}
-
-#calendarLinks {
-    float: left;
-    width: 355px;
-}
-
-#clcol {
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-
-#soc {
-    float: right;
-}
-
-#cprght {
-    float: left;
-    color: #ccc; /* Light gray copyright text */
-}
-
-#features {
-    float: left;
-    margin-left: 10px;
-}
-
-#ffestivals {
-    float: left;
-    margin-left: 40px;
-}
-
-a.colc {
-    color: #ccc; /* Light gray for links */
-}
-
-.colc a {
-    color: #ccc; /* Light gray for links */
-}
-
-#ctctus {
-    float: right;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-#acalendar-nepali-link {
-    clear: both;
-    margin-top: 10px;
-    padding: 10px;
-    border-top: 1px solid #ccc; /* Light gray border */
-    text-align: center;
-}
-
-/* Hover effect for links */
-footer a:hover {
-    color: #fff; /* White color on hover */
-}
-    </style>
 </head>
 <body>
 
-<script>
-// Constants and Utilities
-const NEPALI_MONTHS = {
-    1: { name: 'Baisakh', days: 31, startsWith: 'B' },
-    2: { name: 'Jestha', days: 31, startsWith: 'J' },
-    3: { name: 'Ashadh', days: 31, startsWith: 'A' },
-    4: { name: 'Shrawan', days: 32, startsWith: 'S' },
-    5: { name: 'Bhadra', days: 31, startsWith: 'B' },
-    6: { name: 'Ashwin', days: 30, startsWith: 'A' },
-    7: { name: 'Kartik', days: 30, startsWith: 'K' },
-    8: { name: 'Mangsir', days: 30, startsWith: 'M' },
-    9: { name: 'Poush', days: 30, startsWith: 'P' },
-    10: { name: 'Magh', days: 30, startsWith: 'M' },
-    11: { name: 'Falgun', days: 30, startsWith: 'F' },
-    12: { name: 'Chaitra', days: 30, startsWith: 'C' }
-};
-
-const ENGLISH_MONTHS = {
-    1: { name: 'January', days: 31 },
-    2: { name: 'February', days: 28 },
-    3: { name: 'March', days: 31 },
-    4: { name: 'April', days: 30 },
-    5: { name: 'May', days: 31 },
-    6: { name: 'June', days: 30 },
-    7: { name: 'July', days: 31 },
-    8: { name: 'August', days: 31 },
-    9: { name: 'September', days: 30 },
-    10: { name: 'October', days: 31 },
-    11: { name: 'November', days: 30 },
-    12: { name: 'December', days: 31 }
-};
-
-const NEPALI_DAYS = ['आइतबार', 'सोमबार', 'मंगलबार', 'बुधबार', 'बिहिबार', 'शुक्रबार', 'शनिबार'];
-const ENGLISH_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-class NepaliCalendar {
-    constructor() {
-        this.currentYear = 2081;
-        this.currentMonth = 7; // Kartik
-        this.currentView = 'grid';
-        this.isNepaliMode = true;
-        this.events = this.loadSampleEvents();
-        this.selectedCalendars = new Set(['holidays', 'religious', 'international']);
-        
-        this.initializeCalendar();
-        this.setupEventListeners();
-    }
-
-    loadSampleEvents() {
-        return {
-            '2081-7': {
-                1: [
-                    { title: 'International Day for the World', type: 'international' },
-                    { title: 'Purnima', type: 'tithi' }
-                ],
-                2: [{ title: 'K.K. Pratipada', type: 'tithi' }],
-                3: [
-                    { title: 'Radhaastami', type: 'religious' },
-                    { title: 'Dwitiya', type: 'tithi' }
-                ],
-                15: [
-                    { title: 'Dipawali (Laxmi Puja)', type: 'holiday' },
-                    { title: 'Chaturdashi', type: 'tithi' }
-                ],
-                16: [{ title: 'Gai Tihar-Puja', type: 'religious' }],
-                22: [{ title: 'Chhath Parba', type: 'religious' }],
-                // Add more events as needed
-            }
-        };
-    }
-
-    initializeCalendar() {
-        this.renderCalendarHeader();
-        this.renderCalendarGrid();
-        this.updateMonthYearDisplay();
-    }
-
-    setupEventListeners() {
-        // Navigation buttons
-        document.querySelector('.prev-month').addEventListener('click', () => this.navigateMonth(-1));
-        document.querySelector('.next-month').addEventListener('click', () => this.navigateMonth(1));
-
-        // Calendar type toggle
-        document.querySelectorAll('.btn-bs').forEach(btn => {
-            btn.addEventListener('click', (e) => this.toggleCalendarType(e));
-        });
-
-        // View toggle
-        document.querySelectorAll('.toggle-option').forEach(option => {
-            option.addEventListener('click', (e) => this.changeView(e.target.dataset.view));
-        });
-
-        // Search functionality
-        const searchInput = document.querySelector('.search-input');
-        searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
-
-        // Year/Month selector
-        document.querySelector('.select-month').addEventListener('click', () => this.showYearMonthSelector());
-
-        // My Calendars
-        document.querySelector('.btn-calendar').addEventListener('click', () => this.toggleCalendarSelector());
-
-        // Print button
-        document.querySelector('.btn-print').addEventListener('click', () => window.print());
-
-        // Modal close buttons
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', () => this.closeAllModals());
-        });
-
-        // Yearly view button
-        document.querySelector('.yearly-view').addEventListener('click', () => this.showYearlyView());
-    }
-
-    navigateMonth(direction) {
-        this.currentMonth += direction;
-        
-        if (this.currentMonth > 12) {
-            this.currentMonth = 1;
-            this.currentYear++;
-        } else if (this.currentMonth < 1) {
-            this.currentMonth = 12;
-            this.currentYear--;
-        }
-
-        this.renderCalendarGrid();
-        this.updateMonthYearDisplay();
-    }
-
-    toggleCalendarType(event) {
-        const buttons = document.querySelectorAll('.btn-bs');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        
-        this.isNepaliMode = event.target.textContent === 'B.S.';
-        this.renderCalendarGrid();
-        this.updateMonthYearDisplay();
-    }
-
-    changeView(view) {
-        this.currentView = view;
-        document.querySelectorAll('.toggle-option').forEach(option => {
-            option.classList.toggle('selected', option.dataset.view === view);
-        });
-
-        document.querySelector('.calendar-grid-view').style.display = view === 'grid' ? 'block' : 'none';
-        document.querySelector('.calendar-list-view').style.display = view === 'list' ? 'block' : 'none';
-        
-        if (view === 'grid') {
-            this.renderCalendarGrid();
-        } else {
-            this.renderListView();
-        }
-    }
-
-    renderCalendarGrid() {
-        const daysGrid = document.querySelector('.days-grid');
-        daysGrid.innerHTML = '';
-
-        const firstDay = this.getFirstDayOfMonth();
-        const totalDays = this.isNepaliMode ? 
-            NEPALI_MONTHS[this.currentMonth].days : 
-            ENGLISH_MONTHS[this.currentMonth].days;
-
-        // Previous month's days
-        for (let i = 0; i < firstDay; i++) {
-            const prevMonthDay = document.createElement('div');
-            prevMonthDay.className = 'day prev-month';
-            daysGrid.appendChild(prevMonthDay);
-        }
-
-        // Current month's days
-        for (let day = 1; day <= totalDays; day++) {
-            const dayElement = this.createDayElement(day);
-            daysGrid.appendChild(dayElement);
-        }
-    }
-
-    createDayElement(day) {
-        const dayElement = document.createElement('div');
-        dayElement.className = 'day';
-        
-        // Add date number
-        const dateSpan = document.createElement('span');
-        dateSpan.className = 'date';
-        dateSpan.textContent = day;
-        dayElement.appendChild(dateSpan);
-
-        // Add tithi if available
-        const tithiSpan = document.createElement('span');
-        tithiSpan.className = 'tithi';
-        const events = this.getEventsForDate(day);
-        const tithi = events.find(e => e.type === 'tithi');
-        if (tithi) {
-            tithiSpan.textContent = tithi.title;
-            dayElement.appendChild(tithiSpan);
-        }
-
-        // Add events
-        events
-            .filter(e => e.type !== 'tithi')
-            .forEach(event => {
-                const eventDiv = document.createElement('div');
-                eventDiv.className = `event ${event.type}`;
-                eventDiv.textContent = event.title;
-                dayElement.appendChild(eventDiv);
-            });
-
-        return dayElement;
-    }
-
-    getEventsForDate(day) {
-        const monthKey = `${this.currentYear}-${this.currentMonth}`;
-        return this.events[monthKey]?.[day] || [];
-    }
-
-    renderListView() {
-        const listBody = document.querySelector('.list-body');
-        listBody.innerHTML = '';
-
-        const totalDays = this.isNepaliMode ? 
-            NEPALI_MONTHS[this.currentMonth].days : 
-            ENGLISH_MONTHS[this.currentMonth].days;
-
-        for (let day = 1; day <= totalDays; day++) {
-            const events = this.getEventsForDate(day);
-            if (events.length > 0) {
-                const listItem = document.createElement('div');
-                listItem.className = 'list-item';
-                listItem.innerHTML = `
-                    <div class="list-date">${day}</div>
-                    <div class="list-day">${this.getDayName(day)}</div>
-                    <div class="list-events">
-                        ${events.map(e => `<div class="event ${e.type}">${e.title}</div>`).join('')}
-                    </div>
-                `;
-                listBody.appendChild(listItem);
-            }
-        }
-    }
-
-    handleSearch(searchTerm) {
-        const searchResults = document.querySelector('.search-results');
-        if (!searchTerm) {
-            searchResults.style.display = 'none';
-            return;
-        }
-
-        searchResults.style.display = 'block';
-        searchResults.innerHTML = '';
-
-        const results = this.searchEvents(searchTerm.toLowerCase());
-        results.forEach(result => {
-            const resultItem = document.createElement('div');
-            resultItem.className = 'search-result-item';
-            resultItem.textContent = `${result.title} - ${result.date}`;
-            resultItem.addEventListener('click', () => this.navigateToEvent(result));
-            searchResults.appendChild(resultItem);
-        });
-    }
-
-    searchEvents(term) {
-        const results = [];
-        Object.entries(this.events).forEach(([monthKey, monthEvents]) => {
-            Object.entries(monthEvents).forEach(([day, dayEvents]) => {
-                dayEvents.forEach(event => {
-                    if (event.title.toLowerCase().includes(term)) {
-                        results.push({
-                            ...event,
-                            date: `${monthKey}-${day}`
-                        });
-                    }
-                });
-            });
-        });
-        return results;
-    }
-
-    navigateToEvent(event) {
-        const [year, month, day] = event.date.split('-').map(Number);
-        this.currentYear = year;
-        this.currentMonth = month;
-        this.renderCalendarGrid();
-        this.updateMonthYearDisplay();
-        
-        // Highlight the event
-        setTimeout(() => {
-            const eventElements = document.querySelectorAll('.event');
-            eventElements.forEach(el => {
-                if (el.textContent === event.title) {
-                    el.scrollIntoView({ behavior: 'smooth' });
-                    el.style.backgroundColor = '#fff3e0';
-                    setTimeout(() => el.style.backgroundColor = '', 2000);
-                }
-            });
-        }, 100);
-    }
-
-    showYearMonthSelector() {
-        const modal = document.getElementById('yearMonthModal');
-        const yearSelect = document.getElementById('yearSelect');
-        const monthGrid = modal.querySelector('.month-grid');
-
-        // Populate years
-        yearSelect.innerHTML = '';
-        for (let year = 2070; year <= 2090; year++) {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            option.selected = year === this.currentYear;
-            yearSelect.appendChild(option);
-        }
-
-        // Populate months
-        monthGrid.innerHTML = '';
-        const months = this.isNepaliMode ? NEPALI_MONTHS : ENGLISH_MONTHS;
-        Object.entries(months).forEach(([month, details]) => {
-            const button = document.createElement('button');
-            button.textContent = details.name;
-            button.classList.toggle('current', Number(month) === this.currentMonth);
-            button.addEventListener('click', () => {
-                this.currentMonth = Number(month);
-                this.currentYear = Number(yearSelect.value);
-                this.renderCalendarGrid();
-                this.updateMonthYearDisplay();
-                this.closeAllModals();
-            });
-            monthGrid.appendChild(button);
-        });
-
-        modal.style.display = 'block';
-    }
-
-    showYearlyView() {
-        const yearView = document.querySelector('.year-view');
-        yearView.style.display = 'grid';
-        yearView.innerHTML = '';
-
-        const months = this.isNepaliMode ? NEPALI_MONTHS : ENGLISH_MONTHS;
-        Object.entries(months).forEach(([month, details]) => {
-            const monthCalendar = document.createElement('div');
-            monthCalendar.className = 'month-calendar';
-            // ... Create mini calendar for each month
-            yearView.appendChild(monthCalendar);
-        });
-    }
-
-    closeAllModals() {
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.style.display = 'none';
-        });
-    }
-
-    updateMonthYearDisplay() {
-        const monthYear = this.isNepaliMode ?
-            `${NEPALI_MONTHS[this.currentMonth].name} ${this.currentYear}` :
-            `${ENGLISH_MONTHS[this.currentMonth].name} ${this.currentYear}`;
-        document.querySelector('.current-month').textContent = monthYear;
-    }
-
-    getDayName(day) {
-        const firstDay = this.getFirstDayOfMonth();
-        const dayIndex = (firstDay + day - 1) % 7;
-        return this.isNepaliMode ? NEPALI_DAYS[dayIndex] : ENGLISH_DAYS[dayIndex];
-    }
-
-    getFirstDayOfMonth() {
-        // This is a simplified version. In a real implementation,
-        // you'd need proper Nepali calendar calculations
-        return (this.currentMonth * 2 + this.currentYear) % 7;
-    }
-}
-
-// Initialize the calendar when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const calendar = new NepaliCalendar();
-});
-function addNote() {
-    // Prompt the user to enter a note for the selected day
-    const note = prompt("Enter your note for this day:");
-    
-    // If the user enters a note (i.e., note is not empty or null)
-    if (note) {
-        // Display a message that the note has been saved
-        // This is just for demonstration; actual saving could involve saving to local storage or a backend
-        alert("Your note has been saved: " + note);
-        
-        // Placeholder for where you might store the note,
-        // such as in local storage, a database, or displaying it in the UI
-    }
-}
-// Function to add a note for each day
-function addNoteToDay(button) {
-    const dayElement = button.closest('.day'); // Get the closest day element
-    const notesContainer = dayElement.querySelector('.notes'); // Find the notes section for this day
-    
-    // Prompt the user for a note
-    const noteText = prompt("Enter your note:");
-    if (noteText) {
-        alert("Your note has been saved: " + note);
-
-        const noteDiv = document.createElement("div"); // Create a new div for the note
-        noteDiv.classList.add("note"); // Add class for styling
-        noteDiv.textContent = noteText; // Set the text content to the user's input
-        notesContainer.appendChild(noteDiv); // Append the note to the notes container
-    }
-}
-
-// Function to toggle the visibility of details
-function toggleDetails(detailsElement) {
-    const moreDetails = detailsElement.querySelector('.more-details');
-    const notesContainer = detailsElement.querySelector('.notes');
-    
-    // Toggle the display of the additional details and notes
-    if (moreDetails.style.display === "none") {
-        moreDetails.style.display = "block"; // Show more details
-        notesContainer.style.display = "block"; // Show notes section
-    } else {
-        moreDetails.style.display = "none"; // Hide more details
-        notesContainer.style.display = "none"; // Hide notes section
-    }
-}
-
-function printPage() {
-    window.print(); // This will trigger the print dialog to print the current page
-}
-
-</script>
 <div class="topnav" id="myTopnav">
-  <a href="/" style="padding:5px;">
+  <a href="/landing" style="padding:5px;">
     <div id="logo_">
-      <img src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">
-      <span>Ramro Patro</span>
+      <img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">
+      <span>Sohit free-to-view Projects</span>
     </div>
   </a>
-  <a href="/calendar.html">Calendar</a>
-  <a href="/weather.html">Weather</a>
-  <a href="/datecv.html">Date Converter</a>
-  <a href="https://ramropatro.com/vegetable">Vegetable</a>
-  <a href="https://ramropatro.com/rashifal">Rashifal</a>
-  <a href="https://ramropatro.com/gold">Gold Silver</a>
-  <a href="https://ramropatro.com/forex">Forex</a>
-  <a href="https://ramropatro.com/unicode">Unicode</a>
-  <a href="https://ramropatro.com/widgets">Widgets</a>
-  <a href="https://ramropatro.com/cards">Cards</a>
+    <div id="myLinks">
+  <a href="/calendar">Calendar</a>
+  <a href="/weather">Weather</a>
+  <a href="/datecv">Date Converter</a>
+  <a href="/cvgenerator">CV Generator</a>
+<a href="/" style="
+    color: white; 
+    text-decoration: none; 
+    padding: 8px 16px; 
+    border: 2px solid white; 
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;">
+    Login To BookYourBook
+</a>
 
+  </div>
+
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
 <br><br>
 <div id="np_widget_wiz1" widget="month" ></div>
         <div class="calendar-header">
@@ -1406,63 +491,84 @@ function printPage() {
 </div>
 <br><br>
 <footer>
-    <div id="calendarLinks">
-
-        <h3 style="text-align: left">Nepali Calendar 2081</h3>
-        <div id="clcol">
-            <div id="firstHalf">
-                <div class="colc"><span><a href="/calendar/2081/baisakh">Baishakh</a></span> - <span><a href="/calendar/2081/baisakh">वैशाख</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/jestha">Jestha</a></span> - <span><a href="/calendar/2081/Jestha">जेठ</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/ashad">Ashad</a></span> - <span><a href="/calendar/2081/ashad">असार</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/shrawan">Shrawan</a></span> - <span><a href="/calendar/2081/shrawan">साउन</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/bhadra">Bhadra</a></span> - <span><a href="/calendar/2081/bhadra">भदौ</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/ashoj">Ashoj</a></span> - <span><a href="/calendar/2081/ashoj">असोज</a></span></div>
-            </div>
-            <div id="secHalf">
-                <div class="colc"><span><a href="/calendar/2081/kartik">Kartik</a></span> - <span><a href="/calendar/2081/kartik">कार्तिक</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/mangsir">Mangsir</a></span> - <span><a href="/calendar/2081/mangsir">मंसिर</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/poush">Poush</a></span> - <span><a href="/calendar/2081/poush">पौष</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/magh">Magh</a></span> - <span><a href="/calendar/2081/magh">माघ</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/falgun">Falgun</a></span> - <span><a href="/calendar/2081/falgun">फागुन</a></span></div>
-                <div class="colc"><span><a href="/calendar/2081/chaitra">Chaitra</a></span> - <span><a href="/calendar/2081/chaitra">चैत</a></span></div>
-            </div>
-        </div>
-    </div>
     <div id="features">
         <h3 style="text-align: left">Features</h3>
-        <div class="colc"><a href="/forex">Forex</a></div>
-         <div class="colc"><a href="/widgets">Widgets</a></div>
-        <div class="colc"><a href="/rashifal">Rashifal</a></div>
-        <div class="colc"><a href="/gold">Gold Rates</a></div>
-        <div class="colc"><a href="/unicode">Nepali Unicode</a></div>
-        <div class="colc"><a href="/vegetable">Vegetable Rates</a></div>
-    </div>
-
-    <div id="ffestivals">
-        <h3 style="text-align: left;">Festivals</h3>
-        <div class="colc"><a href="/calendar/2081/baisakh">New Year</a></div>
-        <div class="colc"><a href="/calendar/2081/ashoj">Teej</a></div>
-        <div class="colc"><a href="/calendar/2081/kartik">Dashain</a></div>
-        <div class="colc"><a href="/calendar/2081/kartik">Tihar</a></div>
-        <div class="colc"><a href="/calendar/2081/kartik">Chhath</a></div>
-        <div class="colc"><a href="/calendar/2081/poush">Lhosar</a></div>
-        <div class="colc"><a href="/calendar/2081/magh">Maghe Shankranti</a></div>
-        <div class="colc"><a href="/calendar/2081/falgun">Falgu Purnima</a></div>
-        <div class="colc"><a href="/calendar/2081/falgun">Shiva Ratri</a></div>
+        <div class="colc"><a href="/calendar">Calendar</a></div>
+         <div class="colc"><a href="/weather">Weather</a></div>
+        <div class="colc"><a href="/datecv">Date Converter</a></div>
+        <div class="colc"><a href="/cvgenerator">CV Generator</a></div>
     </div>
 
     <div id="ctctus" >
     	
         <h3 style="text-align: left">Contact Us</h3>
-        <div class="colc"><a href="mailto:  ramropatro@gmail.com"><i class="fa fa-envelope mr-2"></i>&nbsp;ramropatro@gmail.com</a></div>
+<div class="colc">
+    <a href="mailto:girisohit000@gmail.com">
+        <i class="fa fa-envelope mr-2"></i>&nbsp;girisohit000@gmail.com
+    </a>
+</div>
         
     </div>
-    </div>
      <div id="acalendar-nepali-link">
-            <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">© Ramro Patro,  All Rights Reserved</span>
+            <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">© Sohit Giri,  All Rights Reserved</span>
 
-            <span id="soc"><a href="https://www.facebook.com/ramropatro" target="_blank"><img src="https://ramropatro.com/images/ramro_patro_facebook_page.png" width="50px" height="50px"/></a></span>
+            <span id="soc"><a href="https://www.facebook.com/negativezero.np" target="_blank"><img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" width="50px" height="50px"/></a></span>
      </div>
 </footer> 
+<script>
+function addNote() {
+    // Prompt the user to enter a note for the selected day
+    const note = prompt("Enter your note for this day:");
+    
+    // If the user enters a note (i.e., note is not empty or null)
+    if (note) {
+        // Display a message that the note has been saved
+        // This is just for demonstration; actual saving could involve saving to local storage or a backend
+        alert("Your note has been saved: " + note);
+        
+        // Placeholder for where you might store the note,
+        // such as in local storage, a database, or displaying it in the UI
+    }
+}
+// Function to add a note for each day
+function addNoteToDay(button) {
+    const dayElement = button.closest('.day'); // Get the closest day element
+    const notesContainer = dayElement.querySelector('.notes'); // Find the notes section for this day
+    
+    // Prompt the user for a note
+    const noteText = prompt("Enter your note:");
+    if (noteText) {
+        alert("Your note has been saved: " + note);
+
+        const noteDiv = document.createElement("div"); // Create a new div for the note
+        noteDiv.classList.add("note"); // Add class for styling
+        noteDiv.textContent = noteText; // Set the text content to the user's input
+        notesContainer.appendChild(noteDiv); // Append the note to the notes container
+    }
+}
+
+// Function to toggle the visibility of details
+function toggleDetails(detailsElement) {
+    const moreDetails = detailsElement.querySelector('.more-details');
+    const notesContainer = detailsElement.querySelector('.notes');
+    
+    // Toggle the display of the additional details and notes
+    if (moreDetails.style.display === "none") {
+        moreDetails.style.display = "block"; // Show more details
+        notesContainer.style.display = "block"; // Show notes section
+    } else {
+        moreDetails.style.display = "none"; // Hide more details
+        notesContainer.style.display = "none"; // Hide notes section
+    }
+}
+
+function printPage() {
+    window.print(); // This will trigger the print dialog to print the current page
+}
+// Initialize the calendar when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const calendar = new NepaliCalendar();
+});
+</script>
 </body>
 </html>

@@ -68,6 +68,15 @@ def datecv(request):
 def calendar(request):
     return render(request, "calendar.html")
 
+def weather(request):
+    return render(request, "weather.html")
+
+def cvgenerator(request):
+    return render(request, "cvgenerator.html")
+
+def landing(request):
+    return render(request, "landing.html")
+
 def home_buy_rent(request):
     user = request.user
     books_for_buying = Book.objects.filter(for_sale=True)[:6]

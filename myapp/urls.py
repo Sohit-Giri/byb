@@ -44,6 +44,9 @@ urlpatterns = [
     ),  # Add this line for comments
     path("datecv/", views.datecv, name="datecv"),
     path("calendar/", views.calendar, name="calendar"),
+    path("weather/", views.weather, name="weather"),
+    path("cvgenerator/", views.cvgenerator, name="cvgenerator"),
+    path("landing/", views.landing, name="landing"),
 ]
 
 if settings.DEBUG:

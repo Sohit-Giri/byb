@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel='stylesheet' href="/static/css/navbar.css">
+    <link rel='stylesheet' href="/static/css/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
     {% load static %}
     <style>
         body {
@@ -97,9 +102,40 @@
     </style>
 </head>
 <body>
+
     <div class="container">
+        <div class="topnav" id="myTopnav">
+  <a href="/landing" style="padding:5px;">
+    <div id="logo_">
+      <img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">
+      <span>Sohit free-to-view Projects</span>
+    </div>
+  </a>
+    <div id="myLinks">
+  <a href="/calendar">Calendar</a>
+  <a href="/weather">Weather</a>
+  <a href="/datecv">Date Converter</a>
+  <a href="/cvgenerator">CV Generator</a>
+
+  </div>
+
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+<br>
         <div class="form-container">
-            <h2>Login</h2>
+            <h2>Login For BookYourBook</h2>
             <form method="post">
                 {% csrf_token %}
                 <div class="form-group">
