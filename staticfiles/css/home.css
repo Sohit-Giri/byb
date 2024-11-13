@@ -1,0 +1,190 @@
+/* Full container styling */
+.full-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Gemini', sans-serif;
+}
+
+/* Container for the row with full height */
+.row-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  max-width: 1200px; /* Limiting width for better responsiveness */
+  height: 100%;
+  position: relative;
+}
+
+/* Left section (View Calendar Online) */
+.left-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-right: 2px solid transparent; /* Fix for hover line bug */
+  transition: transform 0.3s ease;
+}
+
+.left-section:hover {
+  transform: scale(1.05);
+}
+
+.content-wrapper {
+  max-width: 400px; /* Limiting content width */
+}
+
+.large-title {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.large-title:hover {
+  transform: scale(1.1);
+}
+
+.sub-text {
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.calendar-link {
+  font-size: 1.4rem;
+  color: #007bff; /* Initial text color */
+  text-decoration: none;
+  transition: border 0.3s ease; /* Smooth transition only for border */
+  padding: 10px 20px;
+  border: 2px solid transparent; /* Transparent border initially */
+  border-radius: 50px; /* Oval shape */
+  display: inline-block;
+}
+
+.calendar-link:hover {
+  color: #0056b3; /* Darker blue when hovered */
+  border: 2px solid transparent; /* Keep transparent border */
+  background: linear-gradient(45deg, #ff0066, #ffcc00, #00cc99, #0066ff); /* Gradient border on hover */
+  background-clip: border-box; /* Apply the gradient only to the border */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Right section (Download Ramro Patro) */
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.right-section:hover {
+  transform: scale(1.05);
+}
+
+.icon-container {
+  font-size: 3rem;
+  color: green;
+  transition: transform 0.3s ease;
+}
+
+.icon-container:hover {
+  transform: rotate(360deg);
+}
+
+.download-text {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000;
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+
+.download-text:hover {
+  transform: scale(1.1);
+}
+
+.download-links {
+  margin-top: 20px;
+}
+
+.google-play-badge,
+.apple-store-badge {
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.google-play-badge:hover,
+.apple-store-badge:hover {
+  transform: scale(1.1);
+}
+
+.badge-img {
+  width: 250px;
+  height: 83px;
+  border-radius: 13px;
+}
+
+/* Colorful separator line */
+.separator {
+  width: 10px;
+  background: linear-gradient(45deg, #ff0066, #ffcc00, #00cc99, #0066ff); /* Gradient effect for color */
+  height: 100%;
+  margin: 0 20px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the layout responsive */
+@media screen and (max-width: 768px) {
+  .row-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-section, .right-section {
+    flex: none;
+    width: 100%;
+    margin: 10px 0;
+    border-right: none;
+  }
+
+  .separator {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(45deg, #ff0066, #ffcc00, #00cc99, #0066ff); /* Gradient effect for color */
+    margin: 20px 0;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .large-title {
+    font-size: 2rem;
+  }
+
+  .sub-text {
+    font-size: 1.2rem;
+  }
+
+  .calendar-link {
+    font-size: 1.3rem;
+  }
+
+  .download-text {
+    font-size: 1.5rem;
+  }
+
+  .google-play-badge,
+  .apple-store-badge {
+    width: 220px;
+    height: 75px;
+  }
+}
