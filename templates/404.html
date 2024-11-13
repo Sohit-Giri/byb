@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        /* Content Box Styling */
+.content {
+    padding: 2rem;
+    border: 5px solid rgb(255, 0, 0); /* Initial red border */
+    border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    animation: borderColorChange 4s infinite alternate; /* Faster and alternating animation */
+}
+
+        /* 404 Heading */
+        h1 {
+            font-size: 4rem;
+            color: #fff;
+            margin: 0;
+        }
+
+        /* Description Styling */
+        p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin: 0.5rem 0;
+        }
+
+/* Home Button Styling */
+.home-link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #4caf50; /* Green background */
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px; /* More rounded corners */
+    margin-top: 1rem;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.4s ease-in-out; /* Smooth transition for all effects */
+}
+
+/* Hover Effect */
+.home-link:hover {
+    background-color: #66bb6a; /* Lighter green on hover */
+    transform: scale(1.1); /* Slightly enlarge button */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    letter-spacing: 1px; /* Add some space between letters */
+}
+
+/* Focus Effect */
+.home-link:focus {
+    outline: none; /* Remove default outline */
+    border: 2px solid #66bb6a; /* Green border on focus */
+}
+
+        /* Navigation Buttons Styling */
+        .nav-buttons {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #ff6b;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #ff4d4d;
+        }
+
+        .home-link:active {
+            transform: scale(0.95); /* Button shrink effect */
+            transition: transform 0.1s ease;
+        }
+
+        /* Alien Image Styling */
+        .alien {
+            margin-top: 3rem;
+        }
+
+        .alien img {
+            width: 200px;
+            height: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        .alien img:hover {
+            transform: scale(1.2) translateY(-10px); /* Bounce effect */
+        }
+
+/* Animation for RGB Border Color Change */
+@keyframes borderColorChange {
+    0% {
+        border-color: rgb(255, 0, 0); /* Red */
+        box-shadow: 0 0 8px rgba(255, 0, 0, 0.8); /* Red glow */
+    }
+    25% {
+        border-color: rgb(255, 255, 0); /* Yellow */
+        box-shadow: 0 0 8px rgba(255, 255, 0, 0.8); /* Yellow glow */
+    }
+    50% {
+        border-color: rgb(0, 255, 0); /* Green */
+        box-shadow: 0 0 8px rgba(0, 255, 0, 0.8); /* Green glow */
+    }
+    75% {
+        border-color: rgb(0, 255, 255); /* Cyan */
+        box-shadow: 0 0 8px rgba(0, 255, 255, 0.8); /* Cyan glow */
+    }
+    100% {
+        border-color: rgb(0, 0, 255); /* Blue */
+        box-shadow: 0 0 8px rgba(0, 0, 255, 0.8); /* Blue glow */
+    }
+}
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .home-link {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .alien img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Alien Image -->
+        <div class="alien">
+            <img src="https://cdn.vectorstock.com/i/500p/48/63/404-error-page-not-found-design-with-astronaut-vector-21144863.avif" alt="Alien">
+        </div>
+        <h1>404 - Page Not Found</h1>
+        <p>Sorry, the page you're looking for doesn't exist.</p>
+        <p>As the assignment was to modify three pages, you can visit them.</p>
+        <p>Thank You!!!</p>
+        
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <a href="/" class="home-link">Visit Home Page</a>
+            <a href="/calendar" class="home-link">Visit Calendar</a>
+            <a href="/datecv" class="home-link">Visit Date Converter</a>
+            <a href="/weather" class="home-link">Visit Weather</a>
+        </div>
+    </div>
+</body>
+</html>

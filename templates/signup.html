@@ -35,9 +35,10 @@
             width: 100%;
             position: relative;
         }
-        .form-group {
-            margin-bottom: 10px;
-        }
+    .form-group {
+        position: relative;
+        font-family: Arial, sans-serif;
+    }
         .form-group label {
             display: block;
             margin-bottom: 5px;
@@ -58,20 +59,18 @@
             font-size: 14px;
             margin-top: 5px;
         }
-        .password-container {
-            position: relative;
-            margin-bottom: 10px;
-        }
+    .password-container {
+        margin-bottom: 15px;
+    }
         .password-container input[type="password"] {
             padding-right: 40px;
         }
-        .toggle-password {
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
+    .toggle-password {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 35px;
+    }
         button.btn {
             width: 100%;
             padding: 10px;
@@ -95,6 +94,27 @@
         a:hover {
             text-decoration: underline;
         }
+    .requirements {
+        list-style: none;
+        padding-left: 0;
+        margin: 5px 0 0;
+    }
+    .requirements li {
+        font-size: 0.9em;
+        color: #888;
+    }
+    .requirements li.met {
+        color: green;
+    }
+    .requirements li.met::before {
+        content: "✔ ";
+        color: green;
+        font-weight: bold;
+    }
+    .requirements li:not(.met)::before {
+        content: "✘ ";
+        color: red;
+    }
     </style>
 </head>
 <body>
@@ -139,18 +159,23 @@
                         <p class="error">{{ error }}</p>
                     {% endfor %}
                 </div>
-                <div class="form-group password-container">
-                    <label for="id_password1">Password:</label>
-                    {{ form.password1 }}
-                    <span class="toggle-password">👁️</span>
-                    {% for error in form.password1.errors %}
-                        <p class="error">{{ error }}</p>
-                    {% endfor %}
-                    <small>Your password can't be too similar to your other personal information.</small><br>
-                    <small>Your password must contain at least 8 characters.</small><br>
-                    <small>Your password can't be a commonly used password.</small><br>
-                    <small>Your password can't be entirely numeric.</small>
-                </div>
+<!-- Password Input and Requirements -->
+<div class="form-group password-container">
+    <label for="id_password1">Password:</label>
+    {{ form.password1 }}
+    <span class="toggle-password">👁️</span>
+    {% for error in form.password1.errors %}
+        <p class="error">{{ error }}</p>
+    {% endfor %}
+
+    <!-- Password Requirements List -->
+    <ul class="requirements">
+        <li id="require-length">At least 8 characters</li>
+        <li id="require-info">Not too similar to your personal information</li>
+        <li id="require-common">Not a commonly used password</li>
+        <li id="require-numeric">Not entirely numeric</li>
+    </ul>
+</div>
                 <div class="form-group password-container">
                     <label for="id_password2">Confirm Password:</label>
                     {{ form.password2 }}
@@ -179,34 +204,40 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const togglePasswordIcons = document.querySelectorAll('.toggle-password');
+    const username = "{{ form.username.value|default:'' }}";  // Get username value from Django form if available
+    const passwordInput = document.querySelector('#id_password1');
+    const requirements = {
+        length: document.getElementById('require-length'),
+        info: document.getElementById('require-info'),
+        common: document.getElementById('require-common'),
+        numeric: document.getElementById('require-numeric')
+    };
 
-            togglePasswordIcons.forEach(icon => {
-                icon.addEventListener('click', function () {
-                    const input = this.previousElementSibling;
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        this.textContent = '🙈';
-                    } else {
-                        input.type = 'password';
-                        this.textContent = '👁️';
-                    }
-                });
-            });
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
 
-            const inputs = document.querySelectorAll('input[type="text"], input[type="password"], input[type="email"], input[type="file"]');
+        // At least 8 characters
+        requirements.length.classList.toggle('met', password.length >= 8);
 
-            inputs.forEach(input => {
-                input.addEventListener('focus', function () {
-                    this.style.borderColor = '#007BFF';
-                });
+        // Not entirely numeric
+        const isNotNumeric = /\D/.test(password);
+        requirements.numeric.classList.toggle('met', isNotNumeric);
 
-                input.addEventListener('blur', function () {
-                    this.style.borderColor = '#ccc';
-                });
-            });
-        });
+        // Check for common passwords
+        const commonPasswords = ['password', '12345678', 'qwerty'];
+        const isCommon = commonPasswords.includes(password.toLowerCase());
+        requirements.common.classList.toggle('met', !isCommon);
+
+        // Not too similar to personal info (simple check if username appears in the password)
+        const isSimilarToInfo = username && password.toLowerCase().includes(username.toLowerCase());
+        requirements.info.classList.toggle('met', !isSimilarToInfo);
+    });
+
+    // Toggle password visibility
+    document.querySelector('.toggle-password').addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+    });
     </script>
 </body>
 </html>

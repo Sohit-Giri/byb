@@ -1,3 +1,4 @@
+/* Global styles to reset margin, padding, and apply box-sizing and a universal font */
 * {
     margin: 0;
     padding: 0;
@@ -5,10 +6,12 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Body background color */
 body {
     background-color: #f5f5f5;
 }
 
+/* Main calendar container styling */
 .calendar-container {
     max-width: 1200px;
     margin: 20px auto;
@@ -17,6 +20,7 @@ body {
     border-radius: 8px;
 }
 
+/* Calendar header styling */
 .calendar-header {
     display: flex;
     flex-direction: column;
@@ -24,12 +28,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Calendar title styling */
 .calendar-title {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
+/* Calendar controls layout and styling */
 .calendar-controls {
     display: flex;
     gap: 8px;
@@ -38,6 +44,7 @@ body {
     align-items: center;
 }
 
+/* Button styles */
 .btn {
     padding: 6px 12px;
     border: 1px solid #ddd;
@@ -51,6 +58,7 @@ body {
     background: #f5f5f5;
 }
 
+/* Reusable styles for buttons */
 .btn, .nav-btn, .btn-bs {
     padding: 8px 12px;
     font-size: 0.9em;
@@ -63,11 +71,13 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Active state styling for buttons */
 .btn.active, .btn-bs.active {
     background-color: #007bff;
     color: #fff;
 }
 
+/* Navigation button styling */
 .nav-btn {
     font-size: 1.2em;
     padding: 8px;
@@ -75,10 +85,12 @@ body {
     color: #333;
 }
 
+/* Hover effects for buttons */
 .nav-btn:hover, .btn:hover, .btn-bs:hover {
     background-color: #d0d0d0;
 }
 
+/* Input text styling for button-like appearance */
 input[type="text"].btn {
     padding: 8px;
     font-size: 0.9em;
@@ -91,6 +103,7 @@ input[type="text"].btn::placeholder {
     color: #888;
 }
 
+/* Hover and active state styles */
 .btn:hover, .btn-bs:hover, .nav-btn:hover {
     background-color: #e7e7e7;
 }
@@ -100,10 +113,12 @@ input[type="text"].btn::placeholder {
     color: #fff;
 }
 
+/* Calendar grid container padding */
 .calendar-grid {
     padding: 20px;
 }
 
+/* Weekday header grid setup */
 .weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -113,12 +128,14 @@ input[type="text"].btn::placeholder {
     margin-bottom: 10px;
 }
 
+/* Individual weekday cell styling */
 .weekday {
     padding: 5px;
     font-size: 14px;
     line-height: 1.4;
 }
 
+/* Sunday and Saturday coloring */
 .weekday.sunday, .date.sunday {
     color: #d32f2f;
 }
@@ -127,6 +144,7 @@ input[type="text"].btn::placeholder {
     color: #d32f2f;
 }
 
+/* Grid layout for days within a month */
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -134,6 +152,7 @@ input[type="text"].btn::placeholder {
     background: #e0e0e0;
 }
 
+/* Individual day cell styling */
 .day {
     background: white;
     min-height: 120px;
@@ -147,6 +166,7 @@ input[type="text"].btn::placeholder {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Detail display styling for a specific day */
 .details {
     display: none;
     position: absolute;
@@ -167,10 +187,12 @@ input[type="text"].btn::placeholder {
     z-index: 10;
 }
 
+/* Show details on hover */
 .day:hover .details {
     display: flex;
 }
 
+/* Styling for "Add Note" button */
 .add-note-btn {
     padding: 4px 8px;
     font-size: 12px;
@@ -186,6 +208,7 @@ input[type="text"].btn::placeholder {
     background-color: #0056b3;
 }
 
+/* Date display styling */
 .date {
     font-size: 20px;
     font-weight: 500;
@@ -193,6 +216,7 @@ input[type="text"].btn::placeholder {
     margin-bottom: 16px;
 }
 
+/* Lunar day information display */
 .lunar-day {
     position: absolute;
     top: 2px;
@@ -203,6 +227,7 @@ input[type="text"].btn::placeholder {
     gap: 2px;
 }
 
+/* Circular styling for lunar numbers */
 .lunar-number {
     background: #f0f0f0;
     border-radius: 50%;
@@ -214,12 +239,14 @@ input[type="text"].btn::placeholder {
     font-size: 11px;
 }
 
+/* Tithi display styling */
 .tithi {
     font-size: 12px;
     color: #666;
     margin-bottom: 4px;
 }
 
+/* Styling for event tags */
 .event {
     font-size: 12px;
     padding: 2px 4px;
@@ -227,6 +254,7 @@ input[type="text"].btn::placeholder {
     border-radius: 2px;
 }
 
+/* Different event category styling */
 .event.holiday {
     background: #ffebee;
     color: #d32f2f;
@@ -242,21 +270,25 @@ input[type="text"].btn::placeholder {
     color: #388e3c;
 }
 
+/* Orange background style */
 .orange-bg {
     background: #ff5722;
     color: white;
 }
 
+/* Dimmed styling */
 .dimmed {
     opacity: 0.5; /* Adjust opacity as desired */
 }
 
+/* Hide calendar controls when printing */
 @media print {
     .calendar-controls {
         display: none;
     }
 }
 
+/* Upcoming events container styling */
 .upcoming-events-container {
     max-height: 300px; /* Adjust the height as needed */
     overflow-y: auto; /* Enable vertical scrolling */
@@ -265,12 +297,14 @@ input[type="text"].btn::placeholder {
     background-color: #f9f9f9;
 }
 
+/* Styling for holiday events */
 .np-eve-holiday {
     margin-bottom: 15px;
     position: relative;
     padding-bottom: 15px; /* Space for the separator */
 }
 
+/* Separator styling */
 .np-eve-holiday:after {
     content: "";
     position: absolute;
@@ -282,29 +316,34 @@ input[type="text"].btn::placeholder {
 }
 
 .np-eve-holiday:last-child:after {
-    display: none; /* Remove separator for the last event */
+    display: none;
 }
 
+/* Count styling for holidays */
 .np-holiday-count {
     font-weight: bold;
 }
 
+/* Title styling for Nepali holidays */
 .np-holi-title {
     font-size: 1.1rem;
     color: #333;
 }
 
+/* Small font styling */
 small {
     font-size: 0.9rem;
     color: #777;
 }
 
+/* Hover effect for holiday events */
 .np-eve-holiday:hover {
     background-color: #f1f1f1; /* Hover effect */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
+/* Hover effect for title color */
 .np-holi-title:hover {
     color: #007bff; /* Change title color on hover */
 }

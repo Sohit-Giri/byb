@@ -1,3 +1,4 @@
+/* Footer styling with black background, white text, and hidden overflow for layout control */
 footer {
     background-color: #000; /* Black background */
     padding: 20px;
@@ -5,6 +6,7 @@ footer {
     overflow: hidden;
 }
 
+/* Styling for general footer text, setting light gray color and padding */
 .colc {
     padding: 5px 0px;
     text-align: left;
@@ -12,49 +14,59 @@ footer {
     color: #ccc; /* Light gray text */
 }
 
+/* Styling for calendar links section, positioned to the left */
 #calendarLinks {
     float: left;
     width: 355px;
 }
 
+/* Creating a two-column layout for links within calendar section */
 #clcol {
     display: grid;
     grid-template-columns: 50% 50%;
 }
 
+/* Social media section aligned to the right */
 #soc {
     float: right;
 }
 
+/* Styling for copyright text positioned on the left */
 #cprght {
     float: left;
     color: #ccc; /* Light gray copyright text */
 }
 
+/* Features section, positioned to the left with left margin for spacing */
 #features {
     float: left;
     margin-left: 10px;
 }
 
+/* Festivals section, positioned to the left with larger left margin for separation */
 #ffestivals {
     float: left;
     margin-left: 40px;
 }
 
+/* Link styling within the .colc class, using light gray for text */
 a.colc {
     color: #ccc; /* Light gray for links */
 }
 
+/* Ensuring links within .colc elements have consistent light gray color */
 .colc a {
     color: #ccc; /* Light gray for links */
 }
 
+/* Contact us section aligned to the right with spacing on both sides */
 #ctctus {
     float: right;
     margin-left: 20px;
     margin-right: 20px;
 }
 
+/* Styling for the Nepali calendar link with top margin, padding, and centered text */
 #acalendar-nepali-link {
     clear: both;
     margin-top: 10px;
@@ -63,7 +75,7 @@ a.colc {
     text-align: center;
 }
 
-/* Hover effect for links */
+/* Hover effect for footer links, changing color to white on hover */
 footer a:hover {
     color: #fff; /* White color on hover */
 }

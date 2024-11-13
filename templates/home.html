@@ -1,41 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <style>
-        body {
-            background-image: url('/static/images/background.jpg');
-            background-size: cover;
-            font-family: Arial, sans-serif;
-            color: #333;
-        }
-        .container {
-            text-align: center;
-            padding: 50px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
-            color: white;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Nepali Calendar 2081 - Ramro Patro</title>
+  <!-- External Font Awesome for icons and Google Fonts for Poppins -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- External CSS Links -->
+  <link rel="stylesheet" href="/static/css/home.css">
+  <link rel="stylesheet" href="/static/css/navbar.css">
+  <link rel="stylesheet" href="/static/css/footer.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Welcome to BookYourBook</h1>
-        <a href="{% url 'login' %}" class="button">Login</a>
-        <a href="{% url 'signup' %}" class="button">Signup</a>
+  <!-- Navigation Bar -->
+  <div class="topnav" id="myTopnav">
+    <a href="/" style="padding:5px;">
+      <div id="logo_">
+        <img src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">
+        <span>Ramro Patro</span>
+      </div>
+    </a>
+    <!-- Navigation Links -->
+    <div id="myLinks">
+      <a href="/calendar">Calendar</a>
+      <a href="/weather">Weather</a>
+      <a href="/datecv">Date Converter</a>
+      <a href="https://ramropatro.com/vegetable">Vegetable</a>
+      <a href="https://ramropatro.com/rashifal">Rashifal</a>
+      <a href="https://ramropatro.com/gold">Gold Silver</a>
+      <a href="https://ramropatro.com/forex">Forex</a>
+      <a href="https://ramropatro.com/unicode">Unicode</a>
+      <a href="https://ramropatro.com/widgets">Widgets</a>
+      <a href="https://ramropatro.com/cards">Cards</a>
     </div>
-</body>
+    <!-- Responsive Menu Icon -->
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+  <!-- Script for Responsive NavBar -->
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script>
+
+  <!-- Main Content Container -->
+  <div class="full-container" id="error">
+    <div class="row-container">
+      <!-- Left Section - View Calendar Online -->
+      <div class="left-section" id="view-calendar">
+        <div class="content-wrapper">
+          <h1 class="large-title">View Calendar Online</h1>
+          <p class="sub-text">Click the link below to view the Nepali Calendar online:</p>
+          <a href="../calendar" class="calendar-link">Go to Calendar</a>
+        </div>
+      </div>
+
+      <!-- Colorful Separator Line -->
+      <div class="separator"></div>
+
+      <!-- Right Section - Download Ramro Patro -->
+      <div class="right-section" id="download">
+        <div class="content-wrapper">
+          <strong class="download-text">Download Ramro Patro on Your Phone!!!</strong>
+          <div class="download-links">
+            <!-- Google Play Download Link -->
+            <a href="https://play.google.com/store/apps/details?id=com.ramropatro.app">
+              <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" class="badge-img"/>
+            </a>
+            <!-- Apple Store Download Link -->
+            <a href="https://apps.apple.com/us/app/nepali-calendar-ramro-patro/id1563903752">
+              <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&releaseDate=1619481600" alt="Download on the App Store" class="badge-img">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <!-- Calendar Links Section -->
+    <div id="calendarLinks">
+      <h3>Nepali Calendar 2081</h3>
+      <div id="clcol">
+        <div id="firstHalf">
+          <div class="colc"><span><a href="/calendar/2081/baisakh">Baishakh</a></span> - <span><a href="/calendar/2081/baisakh">वैशाख</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/jestha">Jestha</a></span> - <span><a href="/calendar/2081/Jestha">जेठ</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/ashad">Ashad</a></span> - <span><a href="/calendar/2081/ashad">असार</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/shrawan">Shrawan</a></span> - <span><a href="/calendar/2081/shrawan">साउन</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/bhadra">Bhadra</a></span> - <span><a href="/calendar/2081/bhadra">भदौ</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/ashoj">Ashoj</a></span> - <span><a href="/calendar/2081/ashoj">असोज</a></span></div>
+        </div>
+        <div id="secHalf">
+          <div class="colc"><span><a href="/calendar/2081/kartik">Kartik</a></span> - <span><a href="/calendar/2081/kartik">कार्तिक</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/mangsir">Mangsir</a></span> - <span><a href="/calendar/2081/mangsir">मंसिर</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/poush">Poush</a></span> - <span><a href="/calendar/2081/poush">पौष</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/magh">Magh</a></span> - <span><a href="/calendar/2081/magh">माघ</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/falgun">Falgun</a></span> - <span><a href="/calendar/2081/falgun">फागुन</a></span></div>
+          <div class="colc"><span><a href="/calendar/2081/chaitra">Chaitra</a></span> - <span><a href="/calendar/2081/chaitra">चैत</a></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features">
+      <h3>Features</h3>
+      <div class="colc"><a href="/forex">Forex</a></div>
+      <div class="colc"><a href="/widgets">Widgets</a></div>
+      <div class="colc"><a href="/rashifal">Rashifal</a></div>
+      <div class="colc"><a href="/gold">Gold Rates</a></div>
+      <div class="colc"><a href="/unicode">Nepali Unicode</a></div>
+      <div class="colc"><a href="/vegetable">Vegetable Rates</a></div>
+    </div>
+
+    <!-- Festivals Section -->
+    <div id="ffestivals">
+      <h3>Festivals</h3>
+      <div class="colc"><a href="/calendar/2081/baisakh">New Year</a></div>
+      <div class="colc"><a href="/calendar/2081/ashoj">Teej</a></div>
+      <div class="colc"><a href="/calendar/2081/kartik">Dashain</a></div>
+      <div class="colc"><a href="/calendar/2081/kartik">Tihar</a></div>
+      <div class="colc"><a href="/calendar/2081/kartik">Chhath</a></div>
+      <div class="colc"><a href="/calendar/2081/poush">Lhosar</a></div>
+      <div class="colc"><a href="/calendar/2081/magh">Maghe Shankranti</a></div>
+      <div class="colc"><a href="/calendar/2081/falgun">Holi</a></div>
+      <div class="colc"><a href="/calendar/2081/chaitra">Ram Nawami</a></div>
+    </div>
+    <!-- Contact Us Section -->
+    <div id="ctctus" >
+      <h3>Contact Us</h3>
+        <div class="colc"><a href="mailto:  ramropatro@gmail.com"><i class="fa fa-envelope mr-2"></i>&nbsp;ramropatro@gmail.com</a></div>
+        </div>
+      </div>
+      <div id="acalendar-nepali-link">
+        <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">© Ramro Patro,  All Rights Reserved</span>
+        <span id="soc"><a href="https://www.facebook.com/ramropatro" target="_blank"><img src="https://ramropatro.com/images/ramro_patro_facebook_page.png" width="50px" height="50px"/></a></span>
+      </div>
+    </footer> 
+    <!-- Footer Ends -->
+  </body>
 </html>

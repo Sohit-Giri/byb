@@ -4,54 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nepali Calendar - Kartik 2081</title>
+    <!-- External CSS Links -->
     <link rel='stylesheet' href="/static/css/calendar.css">
     <link rel='stylesheet' href="/static/css/navbar.css">
     <link rel='stylesheet' href="/static/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
 
-<div class="topnav" id="myTopnav">
-  <a href="/landing" style="padding:5px;">
-    <div id="logo_">
-      <img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">
-      <span>Sohit free-to-view Projects</span>
+<body> 
+    <!-- Nav Bar Here -->
+    <div class="topnav" id="myTopnav">
+        <a href="/" style="padding:5px;">
+            <div id="logo_">
+                <img src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">
+                <span>Ramro Patro</span>
+            </div>
+        </a>
+            <div id="myLinks">
+                <a href="/calendar">Calendar</a>
+                <a href="/weather">Weather</a>
+                <a href="/datecv">Date Converter</a>
+                <a href="https://ramropatro.com/vegetable">Vegetable</a>
+                <a href="https://ramropatro.com/rashifal">Rashifal</a>
+                <a href="https://ramropatro.com/gold">Gold Silver</a>
+                <a href="https://ramropatro.com/forex">Forex</a>
+                <a href="https://ramropatro.com/unicode">Unicode</a>
+                <a href="https://ramropatro.com/widgets">Widgets</a>
+                <a href="https://ramropatro.com/cards">Cards</a>
+            </div>  
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
     </div>
-  </a>
-    <div id="myLinks">
-  <a href="/calendar">Calendar</a>
-  <a href="/weather">Weather</a>
-  <a href="/datecv">Date Converter</a>
-  <a href="/cvgenerator">CV Generator</a>
-<a href="/" style="
-    color: white; 
-    text-decoration: none; 
-    padding: 8px 16px; 
-    border: 2px solid white; 
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;">
-    Login To BookYourBook
-</a>
-
-  </div>
-
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-<script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-</script>
-
-<br><br>
-<div id="np_widget_wiz1" widget="month" ></div>
+        <!-- Script for Nav Bar -->
+        <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+        </script>
+    <!-- Nav Bar Ends -->
+    <br><br>
+    <!-- Calendar Div -->
+    <div id="np_widget_wiz1" widget="month" ></div>
+        <!-- Calendar Header -->
         <div class="calendar-header">
             <div class="calendar-title">Kartik 2081 | Oct/Nov 2024</div>
             <div class="calendar-controls">
@@ -67,7 +67,7 @@ function myFunction() {
                 <button class="btn" onclick="printPage()">🖨️</button>
             </div>
         </div>
-        
+        <!-- Calendar Grid of Weekdays -->
         <div class="calendar-grid">
             <div class="weekdays">
                 <div class="weekday sunday">आइतबार<br>Sunday</div>
@@ -78,7 +78,7 @@ function myFunction() {
                 <div class="weekday">शुक्रबार<br>Friday</div>
                 <div class="weekday saturday">शनिबार<br>Saturday</div>
             </div>
-            
+        <!-- Calendar Grid of Days/ Dates -->
         <div class="days-grid">
             <div class="day dimmed">
                 <div class="date">27</div>
@@ -449,126 +449,114 @@ function myFunction() {
                 <div class="date saturday">1</div>
                 <div class="lunar-day"><span class="lunar-number">16</span></div>
                 <div class="tithi">Pratipada</div>
-                    <div class="details" onclick="toggleDetails(this)">
-                        <p class="more-details">More details about this day.</p>
-                        <div class="notes">
+                <div class="details" onclick="toggleDetails(this)">
+                    <p class="more-details">More details about this day.</p>
+                    <div class="notes">
                             <!-- Notes will be appended here -->
-                        </div>
-                    <button class="add-note-btn" onclick="addNoteToDay(this)">Add Note</button>
+                </div>
+                <button class="add-note-btn" onclick="addNoteToDay(this)">Add Note</button>
+                    </div>
                 </div>
             </div>
-            </div>
+            <!-- End of Days/ Date Grid -->
+        </div>
+        <!-- End of Calendar Grid -->
+    </div>
+    <!-- End of Calendar Grid -->
+    <br>
+    <!-- Upcoming Events Section -->
+    <h1>Upcoming Events</h1>
+    <div class="upcoming-events-container">
+        <div class="np-eve-holiday">
+            <div class="np-holiday-count">४ दिन बाँकि</div>
+            <div class="mb-1 np-holi-title">गुरु नानक जयन्ती (शिख धर्मावलम्बी)</div>
+            <small>कार्तिक ३०, २०८१ - 15 Nov, 2024</small>
+        </div>
+        <div class="np-eve-holiday">
+            <div class="np-holiday-count">२२ दिन बाँकि</div>
+            <div class="mb-1 np-holi-title">विश्व अपाङ्ग दिवस (विशेष क्षमताभएकाहरु मात्र)</div>
+            <small>मंसिर १८, २०८१ - 3 Dec, 2024</small>
+        </div>
+        <div class="np-eve-holiday">
+            <div class="np-holiday-count">३४ दिन बाँकि</div>
+            <div class="mb-1 np-holi-title">धान्य पूर्णिमा</div>
+            <small>मंसिर ३०, २०८१ - 15 Dec, 2024</small>
+        </div>
+        <div class="np-eve-holiday">
+            <div class="np-holiday-count">३४ दिन बाँकि</div>
+            <div class="mb-1 np-holi-title">उँधौली पर्व</div>
+            <small>मंसिर ३०, २०८१ - 15 Dec, 2024</small>
+        </div>
+        <div class="np-eve-holiday">
+            <div class="np-holiday-count">३४ दिन बाँकि</div>
+            <div class="mb-1 np-holi-title">य:मरी पुन्ही</div>
+            <small>मंसिर ३०, २०८१ - 15 Dec, 2024</small>
         </div>
     </div>
-<br>
-<h1>Upcoming Events</h1>
-<div class="upcoming-events-container">
-    <div class="np-eve-holiday">
-        <div class="np-holiday-count">४ दिन बाँकि</div>
-        <div class="mb-1 np-holi-title">गुरु नानक जयन्ती (शिख धर्मावलम्बी)</div>
-        <small>कार्तिक ३०, २०८१ - 15 Nov, 2024</small>
-    </div>
-    <div class="np-eve-holiday">
-        <div class="np-holiday-count">२२ दिन बाँकि</div>
-        <div class="mb-1 np-holi-title">विश्व अपाङ्ग दिवस (विशेष क्षमताभएकाहरु मात्र)</div>
-        <small>मंसिर १८, २०८१ - 3 Dec, 2024</small>
-    </div>
-    <div class="np-eve-holiday">
-        <div class="np-holiday-count">३४ दिन बाँकि</div>
-        <div class="mb-1 np-holi-title">धान्य पूर्णिमा</div>
-        <small>मंसिर ३०, २०८१ - 15 Dec, 2024</small>
-    </div>
-    <div class="np-eve-holiday">
-        <div class="np-holiday-count">३४ दिन बाँकि</div>
-        <div class="mb-1 np-holi-title">उँधौली पर्व</div>
-        <small>मंसिर ३०, २०८१ - 15 Dec, 2024</small>
-    </div>
-    <div class="np-eve-holiday">
-        <div class="np-holiday-count">३४ दिन बाँकि</div>
-        <div class="mb-1 np-holi-title">य:मरी पुन्ही</div>
-        <small>मंसिर ३०, २०८१ - 15 Dec, 2024</small>
-    </div>
-</div>
-<br><br>
-<footer>
-    <div id="features">
-        <h3 style="text-align: left">Features</h3>
-        <div class="colc"><a href="/calendar">Calendar</a></div>
-         <div class="colc"><a href="/weather">Weather</a></div>
-        <div class="colc"><a href="/datecv">Date Converter</a></div>
-        <div class="colc"><a href="/cvgenerator">CV Generator</a></div>
-    </div>
+    <br><br>
+    <!-- End of Upcoming Event Section -->
+    <!-- Footer -->
+    <footer>
+        <div id="calendarLinks">
 
-    <div id="ctctus" >
-    	
-        <h3 style="text-align: left">Contact Us</h3>
-<div class="colc">
-    <a href="mailto:girisohit000@gmail.com">
-        <i class="fa fa-envelope mr-2"></i>&nbsp;girisohit000@gmail.com
-    </a>
-</div>
-        
-    </div>
-     <div id="acalendar-nepali-link">
-            <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" alt="Ramro Patro" width="40px">© Sohit Giri,  All Rights Reserved</span>
+            <h3>Nepali Calendar 2081</h3>
+            <div id="clcol">
+                <div id="firstHalf">
+                    <div class="colc"><span><a href="/calendar/2081/baisakh">Baishakh</a></span> - <span><a href="/calendar/2081/baisakh">वैशाख</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/jestha">Jestha</a></span> - <span><a href="/calendar/2081/Jestha">जेठ</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/ashad">Ashad</a></span> - <span><a href="/calendar/2081/ashad">असार</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/shrawan">Shrawan</a></span> - <span><a href="/calendar/2081/shrawan">साउन</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/bhadra">Bhadra</a></span> - <span><a href="/calendar/2081/bhadra">भदौ</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/ashoj">Ashoj</a></span> - <span><a href="/calendar/2081/ashoj">असोज</a></span></div>
+                </div>
+                <div id="secHalf">
+                    <div class="colc"><span><a href="/calendar/2081/kartik">Kartik</a></span> - <span><a href="/calendar/2081/kartik">कार्तिक</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/mangsir">Mangsir</a></span> - <span><a href="/calendar/2081/mangsir">मंसिर</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/poush">Poush</a></span> - <span><a href="/calendar/2081/poush">पौष</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/magh">Magh</a></span> - <span><a href="/calendar/2081/magh">माघ</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/falgun">Falgun</a></span> - <span><a href="/calendar/2081/falgun">फागुन</a></span></div>
+                    <div class="colc"><span><a href="/calendar/2081/chaitra">Chaitra</a></span> - <span><a href="/calendar/2081/chaitra">चैत</a></span></div>
+                </div>
+            </div>
+        </div>
+        <div id="features">
+            <h3>Features</h3>
+            <div class="colc"><a href="/forex">Forex</a></div>
+             <div class="colc"><a href="/widgets">Widgets</a></div>
+            <div class="colc"><a href="/rashifal">Rashifal</a></div>
+            <div class="colc"><a href="/gold">Gold Rates</a></div>
+            <div class="colc"><a href="/unicode">Nepali Unicode</a></div>
+            <div class="colc"><a href="/vegetable">Vegetable Rates</a></div>
+        </div>
 
-            <span id="soc"><a href="https://www.facebook.com/negativezero.np" target="_blank"><img src="https://scontent.fkep2-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=o0tJ2xZiW2QQ7kNvgE0o8qp&_nc_zt=23&_nc_ht=scontent.fkep2-1.fna&_nc_gid=AVJPuP4EYAxaQ2BD9plrrC6&oh=00_AYBuiQwtkP_RYQcvlWvEqPUUZN3tKjPWgpxX39qJsnYQHw&oe=6738E7C8" width="50px" height="50px"/></a></span>
-     </div>
-</footer> 
-<script>
-function addNote() {
-    // Prompt the user to enter a note for the selected day
-    const note = prompt("Enter your note for this day:");
-    
-    // If the user enters a note (i.e., note is not empty or null)
-    if (note) {
-        // Display a message that the note has been saved
-        // This is just for demonstration; actual saving could involve saving to local storage or a backend
-        alert("Your note has been saved: " + note);
-        
-        // Placeholder for where you might store the note,
-        // such as in local storage, a database, or displaying it in the UI
-    }
-}
-// Function to add a note for each day
-function addNoteToDay(button) {
-    const dayElement = button.closest('.day'); // Get the closest day element
-    const notesContainer = dayElement.querySelector('.notes'); // Find the notes section for this day
-    
-    // Prompt the user for a note
-    const noteText = prompt("Enter your note:");
-    if (noteText) {
-        alert("Your note has been saved: " + note);
+        <div id="ffestivals">
+            <h3>Festivals</h3>
+            <div class="colc"><a href="/calendar/2081/baisakh">New Year</a></div>
+            <div class="colc"><a href="/calendar/2081/ashoj">Teej</a></div>
+            <div class="colc"><a href="/calendar/2081/kartik">Dashain</a></div>
+            <div class="colc"><a href="/calendar/2081/kartik">Tihar</a></div>
+            <div class="colc"><a href="/calendar/2081/kartik">Chhath</a></div>
+            <div class="colc"><a href="/calendar/2081/poush">Lhosar</a></div>
+            <div class="colc"><a href="/calendar/2081/magh">Maghe Shankranti</a></div>
+            <div class="colc"><a href="/calendar/2081/falgun">Falgu Purnima</a></div>
+            <div class="colc"><a href="/calendar/2081/falgun">Shiva Ratri</a></div>
+        </div>
 
-        const noteDiv = document.createElement("div"); // Create a new div for the note
-        noteDiv.classList.add("note"); // Add class for styling
-        noteDiv.textContent = noteText; // Set the text content to the user's input
-        notesContainer.appendChild(noteDiv); // Append the note to the notes container
-    }
-}
+        <div id="ctctus" >
 
-// Function to toggle the visibility of details
-function toggleDetails(detailsElement) {
-    const moreDetails = detailsElement.querySelector('.more-details');
-    const notesContainer = detailsElement.querySelector('.notes');
-    
-    // Toggle the display of the additional details and notes
-    if (moreDetails.style.display === "none") {
-        moreDetails.style.display = "block"; // Show more details
-        notesContainer.style.display = "block"; // Show notes section
-    } else {
-        moreDetails.style.display = "none"; // Hide more details
-        notesContainer.style.display = "none"; // Hide notes section
-    }
-}
+            <h3>Contact Us</h3>
+            <div class="colc"><a href="mailto:  ramropatro@gmail.com"><i class="fa fa-envelope mr-2"></i>&nbsp;ramropatro@gmail.com</a></div>
 
-function printPage() {
-    window.print(); // This will trigger the print dialog to print the current page
-}
-// Initialize the calendar when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const calendar = new NepaliCalendar();
-});
-</script>
-</body>
+        </div>
+        </div>
+         <div id="acalendar-nepali-link">
+                <span id="cprght"><img style="vertical-align:middle;margin-right: 10px" src="https://ramropatro.com/images/ramropatro.png" alt="Ramro Patro" width="40px">© Ramro Patro,  All Rights Reserved</span>
+
+                <span id="soc"><a href="https://www.facebook.com/ramropatro" target="_blank"><img src="https://ramropatro.com/images/ramro_patro_facebook_page.png" width="50px" height="50px"/></a></span>
+        </div>
+    </footer> 
+    <!-- Footer Ends -->
+    <!-- External JavaScript -->
+    <script src="/static/js/calendar.js"></script>
+    </body>
 </html>

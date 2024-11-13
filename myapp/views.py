@@ -1,3 +1,4 @@
+from django.http import HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
@@ -58,6 +59,8 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, "login.html", {"form": form})
 
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
 
 def home_sell_donate_rent(request):
     return render(request, "home_sell_donate_rent.html")
@@ -74,8 +77,9 @@ def weather(request):
 def cvgenerator(request):
     return render(request, "cvgenerator.html")
 
-def landing(request):
-    return render(request, "landing.html")
+def home(request):
+    return render(request, "home.html")
+
 
 def home_buy_rent(request):
     user = request.user
