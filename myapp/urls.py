@@ -50,7 +50,8 @@ urlpatterns = [
     path("calendar/", views.calendar, name="calendar"),
     path("weather/", views.weather, name="weather"),
     path("cvgenerator/", views.cvgenerator, name="cvgenerator"),
-    path("", views.home, name="home"),
+    # path("", views.home, name="home"),
+    path("", views.jersey, name="jersey"),
     # path('trigger404/', views.trigger_404, name='trigger_404'),
 ]
 

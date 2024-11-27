@@ -68,6 +68,9 @@ def home_sell_donate_rent(request):
 def datecv(request):
     return render(request, "datecv.html")
 
+def jersey(request):
+    return render(request, "jersey.html")
+
 def calendar(request):
     return render(request, "calendar.html")
 
