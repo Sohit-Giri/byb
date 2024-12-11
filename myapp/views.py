@@ -68,8 +68,8 @@ def home_sell_donate_rent(request):
 def datecv(request):
     return render(request, "datecv.html")
 
-def jersey(request):
-    return render(request, "jersey.html")
+def portfolio(request):
+    return render(request, "portfolio.html")
 
 def calendar(request):
     return render(request, "calendar.html")
@@ -82,6 +82,9 @@ def cvgenerator(request):
 
 def home(request):
     return render(request, "home.html")
+
+def landing(request):
+    return render(request, "landing.html")
 
 
 def home_buy_rent(request):

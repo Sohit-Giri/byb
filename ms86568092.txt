@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "sohitgiri.com.np",
+  "Id": "2f9fad44-74d6-46f9-91b4-f226be9c5b2f"
+}
