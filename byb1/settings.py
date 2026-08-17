@@ -46,6 +46,7 @@ ALLOWED_HOSTS = [
     "onrender.com",
     "localhost",
     "127.0.0.1",
+    'byb.sohitgiri.com.np'
 ]
 
 AUTH_USER_MODEL = "myapp.CustomUser"
