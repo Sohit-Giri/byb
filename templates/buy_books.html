@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}Buy Books{% endblock %}
+
+{% block content %}
+<div class="search-filter-form">
+    <form method="get">
+        <input type="text" name="search" placeholder="Search by title, genre, or author" value="{{ request.GET.search }}">
+        <select name="genre">
+            <option value="">All Genres</option>
+            {% for genre in genres %}
+                <option value="{{ genre }}" {% if request.GET.genre == genre %}selected{% endif %}>{{ genre }}</option>
+            {% endfor %}
+        </select>
+        <select name="author">
+            <option value="">All Authors</option>
+            {% for author in authors %}
+                <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
+            {% endfor %}
+        </select>
+        <select name="sort">
+            <option value="">Sort by</option>
+            <option value="price_low_to_high" {% if request.GET.sort == 'price_low_to_high' %}selected{% endif %}>Price: Low to High</option>
+            <option value="price_high_to_low" {% if request.GET.sort == 'price_high_to_low' %}selected{% endif %}>Price: High to Low</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div id="buy-books">
+    <h1>Buy Books</h1>
+    <div class="book-list">
+        {% for book in books %}
+        <div class="book-card">
+            <img src="{{ book.photo1.url }}" alt="{{ book.title }}">
+            <h3>{{ book.title }}</h3>
+            <p>Author: {{ book.author }}</p>
+            <p>Genre: {{ book.genre }}</p>
+            <p>Price: NPR {{ book.sale_amount }}</p>
+            <a href="{% url 'book_detail' book.pk %}" class="btn">Buy Now</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee color */
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #buy-books {
+        padding: 20px;
+    }
+    .book-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .book-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .book-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .book-card img {
+        width: 150px;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+    .book-card h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .book-card p {
+        margin: 5px 0;
+        color: #666;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .search-filter-form {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .search-filter-form form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+    }
+    .search-filter-form input,
+    .search-filter-form select,
+    .search-filter-form button {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+    }
+    .search-filter-form input {
+        flex: 2;
+        min-width: 200px;
+    }
+    .search-filter-form select {
+        flex: 1;
+        min-width: 150px;
+    }
+    .search-filter-form button {
+        background-color: #007BFF;
+        color: white;
+        cursor: pointer;
+    }
+    .search-filter-form button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% endblock %}

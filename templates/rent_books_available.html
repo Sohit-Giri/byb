@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent Books{% endblock %}
+
+{% block content %}
+<h1>Books Available for Renting</h1>
+<div class="search-filter-form">
+    <form method="get">
+        <input type="text" name="search" placeholder="Search by title, genre, or author" value="{{ request.GET.search }}">
+        <select name="genre">
+            <option value="">All Genres</option>
+            {% for genre in genres %}
+                <option value="{{ genre }}" {% if request.GET.genre == genre %}selected{% endif %}>{{ genre }}</option>
+            {% endfor %}
+        </select>
+        <select name="author">
+            <option value="">All Authors</option>
+            {% for author in authors %}
+                <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
+            {% endfor %}
+        </select>
+        <select name="sort">
+            <option value="">Sort by</option>
+            <option value="price_low_to_high" {% if request.GET.sort == 'price_low_to_high' %}selected{% endif %}>Price: Low to High</option>
+            <option value="price_high_to_low" {% if request.GET.sort == 'price_high_to_low' %}selected{% endif %}>Price: High to Low</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="book-section">
+    {% for book in books %}
+    <div class="book-card">
+        <img src="{{ book.photo1.url }}" alt="{{ book.title }}">
+        <h3>{{ book.title }}</h3>
+        <p>Author: {{ book.author }}</p>
+        <p>Genre: {{ book.genre }}</p>
+        <p>Price: NPR {{ book.rent_amount }}/month</p>
+        <a href="{% url 'book_detail' book.id %}">Rent Now</a>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee background color */
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .search-filter-form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        padding: 0 20px;
+    }
+    .search-filter-form form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 1200px;
+        width: 100%;
+    }
+    .search-filter-form input,
+    .search-filter-form select,
+    .search-filter-form button {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+    }
+    .search-filter-form input {
+        flex: 2;
+    }
+    .search-filter-form select {
+        flex: 1;
+    }
+    .search-filter-form button {
+        background-color: #007BFF;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .search-filter-form button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+    .book-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .book-card {
+        width: 200px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+        margin: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .book-card img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .book-card h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .book-card p {
+        margin: 5px 0;
+        color: #666;
+    }
+    .book-card a {
+        display: block;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .book-card a:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,151 @@
+/* Reset default margins, padding, and box-sizing for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body styling with gradient background, centering content */
+body {
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Main container styling with background, shadow, and width settings */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Nepal flag-colored border for visual styling */
+.nepal-flag-border {
+    height: 5px;
+    background: linear-gradient(90deg, #DC143C 50%, #003893 50%);
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 20px;
+}
+
+/* Header styling for the title */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Layout for selection buttons with spacing */
+.selection-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Styling for each selection button */
+.selection-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Active state styling for the selected button */
+.selection-btn.active {
+    background: linear-gradient(135deg, #DC143C, #003893);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hide converter sections by default and apply fade-in animation */
+.converter-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+/* Display active converter section */
+.converter-section.active {
+    display: block;
+}
+
+/* Styling for input groups including label spacing */
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* Label styling */
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Input and select box styling */
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+/* Focus effect for inputs and select boxes */
+input:focus, select:focus {
+    outline: none;
+    border-color: #003893;
+    box-shadow: 0 0 0 3px rgba(0, 56, 147, 0.1);
+}
+
+/* Styling for the conversion button */
+button.convert-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #DC143C, #003893);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for conversion button */
+button.convert-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Result box styling for displaying conversion output */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.5s ease;
+}
+
+/* Fade-in animation for smooth element appearance */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

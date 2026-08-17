@@ -1,0 +1,23 @@
+/* CSS for home.html */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-screen {
+    background-image: url("../images/h1.68411abadc38.jpg");  /* Reference to the image */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+

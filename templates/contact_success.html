@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Success{% endblock %}
+
+{% block content %}
+<div class="contact-success">
+    <h1>Thank You for Your Message!</h1>
+    <p>We have received your message and will get back to you shortly.</p>
+</div>
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee color to match other pages */
+    }
+    .contact-success {
+        text-align: center;
+        padding: 50px 20px;
+        margin: 0 auto;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .contact-success h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #007BFF;
+    }
+    .contact-success p {
+        font-size: 1.2em;
+        color: #555;
+        line-height: 1.6;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jersey Reveal - Negative Zero</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #121212, #2c2c2c);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .container {
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            color: #00ff88;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88;
+            animation: glowText 1.5s infinite alternate;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #d1d1d1;
+            margin-bottom: 20px;
+            animation: slideIn 2s ease-out;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #ff4d4d;
+            animation: zoomIn 2s ease-out;
+        }
+
+        .image-container {
+            margin-top: 30px;
+            display: inline-block;
+            transform: rotateY(0deg);
+            animation: rotate3D 10s infinite linear;
+        }
+
+        .image-container img {
+            width: 300px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 30px #00ff88;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+            }
+            to {
+                text-shadow: 0 0 30px #00ff88, 0 0 60px #00ff88;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotate3D {
+            0% {
+                transform: rotateY(0deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Negative Zero</h1>
+        <p>Soon... The jersey reveal is coming!</p>
+        <div class="countdown"></div>
+        <div class="image-container">
+            <img src="https://scontent.fktm8-1.fna.fbcdn.net/v/t39.30808-6/335129469_1338298476736437_3626015976054543710_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=aNTdCmLmLGAQ7kNvgEzAE1J&_nc_zt=23&_nc_ht=scontent.fktm8-1.fna&_nc_gid=AZ6c1embF_lwEI8pvy_zrF0&oh=00_AYArkCqHKqOGoMX_TUSOG9f-UtjqhYheoGcaSmGBRdTqkg&oe=674CE688" alt="Jersey Teaser">
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        const countdownElement = document.querySelector('.countdown');
+        const revealDate = new Date().getTime() + 5 * 24 * 60 * 60 * 1000; // 5 days from now
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = revealDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                countdownElement.textContent = `Revealing in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            } else {
+                countdownElement.textContent = "The wait is over! Jersey revealed!";
+                clearInterval(interval);
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>

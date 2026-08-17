@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block title %}Buy, Rent Home Page{% endblock %}
+
+{% block content %}
+<div id="home-buy-rent">
+    <header>
+        <h1>Welcome to Book Your Book</h1>
+        <p>Discover, Buy, and Rent Your Favorite Books</p>
+    </header>
+
+    <section>
+        <h2>Top Books for Buying</h2>
+        <div class="book-list">
+            {% for book in books_for_buying %}
+            <div class="book-card">
+                <img src="{{ book.photo1.url }}" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p>Author: {{ book.author }}</p>
+                <p>Genre: {{ book.genre }}</p>
+                <p>Price: NPR {{ book.sale_amount }}</p>
+                <a href="{% url 'book_detail' book.pk %}" class="btn">Buy Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'buy_books' %}" class="show-more-btn">Show More</a>
+    </section>
+
+    <section>
+        <h2>Top Books for Renting</h2>
+        <div class="book-list">
+            {% for book in books_for_renting %}
+            <div class="book-card">
+                <img src="{{ book.photo1.url }}" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p>Author: {{ book.author }}</p>
+                <p>Genre: {{ book.genre }}</p>
+                <p>Price: NPR {{ book.rent_amount }}/month</p>
+                <a href="{% url 'book_detail' book.pk %}" class="btn">Rent Now</a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'rent_books_available' %}" class="show-more-btn">Show More</a>
+    </section>
+
+    {% if books_based_on_preference %}
+    <section>
+        <h2>Books Based on Your Preference</h2>
+        <div class="book-list">
+            {% for book in books_based_on_preference %}
+            <div class="book-card">
+                <img src="{{ book.photo1.url }}" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p>Author: {{ book.author }}</p>
+                <p>Genre: {{ book.genre }}</p>
+                <p>Price: NPR {{ book.sale_amount }}</p>
+                <a href="{% url 'book_detail' book.pk %}" class="btn">Buy Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <section>
+        <h2>Recent Forum Posts</h2>
+        <div class="forum-list">
+            {% for forum in recent_forums %}
+            <div class="forum-card">
+                <h3>{{ forum.title }}</h3>
+                <p>Author: {{ forum.author }}</p>
+                <p>Genre: {{ forum.genre }}</p>
+                <a href="{% url 'forum_detail' forum.pk %}" class="btn">Read More</a>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'forum_list' %}" class="show-more-btn">Show More</a>
+    </section>
+</div>
+
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee color */
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #home-buy-rent {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 20px;
+        background-image: url('https://cdn.pixabay.com/photo/2015/11/19/21/10/glasses-1052010_640.jpg'); /* Replace with actual URL */
+        background-size: cover;
+        background-position: center;
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        font-family: 'Georgia', serif;
+        color: #333; /* Changed to dark gray for contrast */
+    }
+    header p {
+        font-size: 1.2em;
+        color: #333; /* Changed to dark gray for contrast */
+        font-family: 'Georgia', serif;
+    }
+    section {
+        margin-bottom: 40px;
+    }
+    section h2 {
+        font-size: 2em;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .book-list, .forum-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .book-card, .forum-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .book-card:hover, .forum-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .book-card img, .forum-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+    .book-card h3, .forum-card h3 {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .book-card p, .forum-card p {
+        font-size: 1em;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .show-more-btn {
+        display: block;
+        text-align: center;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        width: fit-content;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .show-more-btn:hover {
+        background-color: #218838;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<script>
+    // Add any JavaScript functionality if needed
+</script>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<div class="about-us">
+    <h1>About Us</h1>
+
+    <div class="team-members">
+        <div class="member-card">
+            <img src="{% static '/static/images/Sohit.jpg' %}" alt="Sohit Giri"> <!-- Replace with the actual path to your photo -->
+            <h2>Sohit Giri</h2>
+            <p>CEO</p> <!-- Add your actual role -->
+
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee color to match other pages */
+    }
+    .about-us {
+        text-align: center;
+        margin: 50px 20px;
+    }
+    .about-us h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .about-us p {
+        font-size: 1.2em;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+    }
+    .team-members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+    .member-card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        width: 200px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+    }
+    .member-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .member-card img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+    .member-card h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .member-card p {
+        margin: 5px 0 15px;
+        color: #777;
+        font-size: 1em;
+    }
+    .instagram-link img {
+        width: 24px;
+        height: 24px;
+        transition: transform 0.3s;
+    }
+    .instagram-link:hover img {
+        transform: scale(1.2);
+    }
+</style>
+{% endblock %}

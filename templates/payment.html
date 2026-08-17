@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+<div class="payment-container">
+    <h1>Payment for {{ book.title }}</h1>
+    <div class="book-details">
+        <h2>{{ book.title }}</h2>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Genre:</strong> {{ book.genre }}</p>
+        <p><strong>Condition:</strong> {{ book.condition }}</p>
+        <p><strong>Used Duration:</strong> {{ book.used_duration }}</p>
+        <p><strong>Price:</strong> 
+            {% if mode == 'buy' %}
+                NPR {{ book.sale_amount }}
+            {% elif mode == 'rent' %}
+                NPR {{ book.rent_amount }}/month
+            {% endif %}
+        </p>
+    </div>
+    <div class="payment-section">
+        <h2>Payment Instructions</h2>
+        <p>Please scan the QR code below to make your payment:</p>
+        <img src="{% static 'images/payment_qr.png' %}" alt="Bank QR Code" class="bank-qr">
+    </div>
+    <div class="upload-payment">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="payment_screenshot">Upload Payment Screenshot:</label>
+            <input type="file" id="payment_screenshot" name="payment_screenshot" required>
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+    <div class="notification">
+        <p>You will be notified via email and get a call from us after validating the payment within 24 hours.</p>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    body {
+        background-color: #f7f2e8; /* Light coffee color background */
+    }
+    .payment-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .book-details, .payment-section, .upload-payment {
+        margin-bottom: 20px;
+    }
+    .bank-qr {
+        width: 200px;
+        height: auto;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .btn-submit {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 10px;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn-submit:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+</style>

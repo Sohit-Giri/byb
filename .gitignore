@@ -1,0 +1,13 @@
+# Environment & Secrets
+.env
+
+# Python Bytecode
+__pycache__/
+*.pyc
+
+# Local Database & Media Uploads
+db.sqlite3
+/media/
+
+# Generated Static Files
+/staticfiles/

@@ -1,0 +1,18 @@
+<!-- templates/payment_success.html -->
+{% extends 'base.html' %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block content %}
+<div class="payment-success">
+    <h1>Payment Successful!</h1>
+    <p>Thank you for your payment. You will be notified via email and get a call from us after validating the payment within 24 hours.</p>
+</div>
+{% endblock %}
+
+<style>
+.payment-success {
+    text-align: center;
+    margin: 50px;
+}
+</style>

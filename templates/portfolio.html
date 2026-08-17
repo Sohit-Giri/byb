@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohit's Portfolio</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/scripts.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero {
+            background: #f4f4f4;
+            padding: 2rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-item, .blog-post {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            background: #fff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', event => {
+                    event.preventDefault();
+                    const target = document.querySelector(event.target.getAttribute('href'));
+                    target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero">
+            <h1>Welcome to Sohit's Portfolio</h1>
+            <p>Your gateway to exploring my world of coding and data science.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>Hi! I'm Sohit, a passionate developer and aspiring data scientist. With experience in coding and machine learning, I love solving problems and building impactful solutions.</p>
+            <p>From creating optimized databases to building predictive models, my journey reflects a mix of technical expertise and creativity.</p>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <h3>Project 1</h3>
+                <p>Description of the project goes here. Include the technologies used and outcomes achieved.</p>
+                <a href="#" class="btn">View Details</a>
+            </div>
+            <div class="project-item">
+                <h3>Project 2</h3>
+                <p>Description of the project goes here. Include the technologies used and outcomes achieved.</p>
+                <a href="#" class="btn">View Details</a>
+            </div>
+            <!-- Add more projects as needed -->
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <h2>Blog</h2>
+        <div class="blog-posts">
+            <article class="blog-post">
+                <h3>Blog Title 1</h3>
+                <p>Excerpt from the blog post. Provide a brief insight or teaser for the post content.</p>
+                <a href="#" class="btn">Read More</a>
+            </article>
+            <article class="blog-post">
+                <h3>Blog Title 2</h3>
+                <p>Excerpt from the blog post. Provide a brief insight or teaser for the post content.</p>
+                <a href="#" class="btn">Read More</a>
+            </article>
+            <!-- Add more blog posts as needed -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form action="/contact" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Sohit's Portfolio. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Forum Post{% endblock %}
+
+{% block content %}
+<div class="forum-form">
+    <h1>Create Forum Post</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f0e5d8; /* Light coffee color to match other pages */
+    }
+    .forum-form {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .forum-form h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #007BFF;
+        text-align: center;
+    }
+    .forum-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .forum-form form .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .forum-form form label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    .forum-form form input[type="text"],
+    .forum-form form textarea,
+    .forum-form form input[type="file"],
+    .forum-form form select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        width: 100%;
+    }
+    .forum-form form button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    .forum-form form button:hover {
+        background-color: #0056b3;
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}

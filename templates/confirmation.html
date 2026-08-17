@@ -1,0 +1,36 @@
+{% comment %} {% extends 'base.html' %}
+
+{% block title %}Confirmation{% endblock %}
+
+{% block content %}
+<div id="confirmation">
+    <h2>What would you like to do?</h2>
+    <form action="{% url 'home_sell_donate_rent' %}" method="get">
+        <button type="submit">Sell Book, Donate Book, Or Rent Book to Others</button>
+    </form>
+    <form action="{% url 'home_buy_rent' %}" method="get">
+        <button type="submit">Buy, or Rent a Book</button>
+    </form>
+</div>
+<style>
+    #confirmation {
+        text-align: center;
+        padding: 50px;
+    }
+    button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %} {% endcomment %}
